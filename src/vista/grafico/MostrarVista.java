@@ -1,10 +1,15 @@
 package vista.grafico;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JList;
+import javax.swing.ListSelectionModel;
 
 /**
  * @author Dilan Rojas
@@ -16,7 +21,9 @@ import javax.swing.border.EmptyBorder;
 public class MostrarVista extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	private JTextField tfBuscarInput;
+	private JButton btnBuscar;
+	private JList listaUsuarios;
 
 	/**
 	 * Launch the application.
@@ -38,12 +45,54 @@ public class MostrarVista extends JFrame {
 	 * Create the frame.
 	 */
 	public MostrarVista() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-
+		initComponents();
+        setTitle("Mostrar | CRUD");
+        setSize(750, 400);
+        setResizable(false);
+        setLocationRelativeTo(null);
 	}
 
+	public void initComponents() {
+		getContentPane().setLayout(null);
+		
+        tfBuscarInput = new JTextField();
+        tfBuscarInput.setToolTipText("");
+        tfBuscarInput.setBounds(111, 52, 409, 38);
+        getContentPane().add(tfBuscarInput);
+        tfBuscarInput.setColumns(10);
+        
+        JLabel lblNewLabel = new JLabel("Nombre | Nivel | Puntaje");
+        lblNewLabel.setBounds(285, 23, 154, 17);
+        getContentPane().add(lblNewLabel);
+        
+        btnBuscar = new JButton("Buscar");
+        btnBuscar.setBounds(532, 52, 85, 37);
+        getContentPane().add(btnBuscar);
+        
+        listaUsuarios = new JList();
+        listaUsuarios.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        listaUsuarios.setBounds(111, 118, 506, 176);
+        getContentPane().add(listaUsuarios);
+        setVisible(true);
+	}
+	
+	public String getTfBuscarInput() {
+		return tfBuscarInput.getText();
+	}
+
+	public void setListaUsuarios(JList listaUsuarios) {
+		this.listaUsuarios = listaUsuarios;
+	}
+
+	public void mostrarMsj(String msg) {
+	    JOptionPane.showMessageDialog(this, msg, "CRUD", JOptionPane.INFORMATION_MESSAGE);
+	}
+	
+	public void setEscuchadores(ActionListener escuchador) {
+		btnBuscar.addActionListener(escuchador);
+	}
+	
+	public void cerrar() {
+		dispose();
+	}
 }
