@@ -46,40 +46,38 @@ public class ListaUsuarios {
 	}
 	
 	// Crecer
-    private void crecer() {
-        int nuevoTamano = lista.length * 2;
-        Usuario[] nuevaLista = new Usuario[nuevoTamano];
-        for (int i = 0; i < lista.length; i++) {
-            nuevaLista[i] = lista[i];
-        }
-        lista = nuevaLista;
-        System.out.println("Dataset ampliado a " + nuevoTamano + " elementos.");
-    }
-    
-    // Imprimir
-    public String imprimir() {
-        String valores = "";
-        for (int i = 0; i < size; i++) {
-            valores = valores + lista[i] + "\n";
-        }
-        return valores;
-    }
-    
-    // Getters y setters
-    public int getSize() {
-        return size;
-    }
+  private void crecer() {
+      int nuevoTamano = lista.length * 2;
+      Usuario[] nuevaLista = new Usuario[nuevoTamano];
+      for (int i = 0; i < lista.length; i++) {
+          nuevaLista[i] = lista[i];
+      }
+      lista = nuevaLista;
+      System.out.println("Dataset ampliado a " + nuevoTamano + " elementos.");
+  }
+  
+  // Imprimir
+  public String imprimir() {
+      String valores = "";
+      for (int i = 0; i < size; i++) {
+          valores = valores + lista[i] + "\n";
+      }
+      return valores;
+  }
+  
+  // Getters y setters
+  public int getSize() {
+      return size;
+  }
 
-    // Verificar si la lista está vacía
-    public boolean isEmpty() {
-        return size == 0;
-    }
-    
-    // Limpiar la lista
-    public void clear() {
-    	for (Usuario usuario : lista) {
-			usuario = null;
-		}
-        size = 0;
+  // Verificar si la lista está vacía
+  public boolean isEmpty() {
+      return size == 0;
+  }
+
+  // Limpiar la lista
+  public void clear() {
+  	for (Usuario usuario : lista) usuario = null;
+    size = 0;
 	}
 }
