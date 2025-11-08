@@ -3,16 +3,26 @@ package vista.grafico;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
+/**
+ * @author Ana
+ * @date Nov 5, 2025
+ * @version 1.0
+ * @description description
+ */
+
 public class ActualizarVista extends JFrame {
+	// Componentes gráficos
 	private static final long serialVersionUID = 1L;
 	private JRadioButton rbtnNombre, rbtnNivel, rbtnPuntaje;
 	private JTextField txtBuscar, txtNombre, txtNivel, txtPuntaje, txtNuevaContra;
 	private JButton btnBuscar, btnActualizar, btnCerrar;
 
+	// Main (pruebas)
 	public static void main(String[] args) {
 		ActualizarVista ac = new ActualizarVista();
 	}
 
+	// Constructor
 	public ActualizarVista() {
 		setTitle("Actualizar");
 		setSize(500, 500);
@@ -22,6 +32,7 @@ public class ActualizarVista extends JFrame {
 		setVisible(true);
 	}
 
+	// Inicializar todos los componentes
 	public void initComponents() {
 		getContentPane().setLayout(null);
 
@@ -139,12 +150,14 @@ public class ActualizarVista extends JFrame {
 		JOptionPane.showMessageDialog(this, msj);
 	}
 
+	// Configurar escuchadores
 	public void setEscuchadores(ActionListener e) {
 		btnBuscar.addActionListener(e);
 		btnActualizar.addActionListener(e);
 		btnCerrar.addActionListener(e);
 	}
 
+	// Metodo cerrar
 	public void cerrar() {
 		dispose();
 	}

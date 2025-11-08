@@ -8,5 +8,5 @@ package modelo.dao;
  */
 
 public interface IUsuarioDAO {
-
+	// TODO
 }

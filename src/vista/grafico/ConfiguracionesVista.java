@@ -15,7 +15,7 @@ import javax.swing.JButton;
  */
 
 public class ConfiguracionesVista extends JFrame {
-
+	// Componentes gráficos
 	private static final long serialVersionUID = 1L;
 	private JButton btnTipoEnemigos;
 	private JButton btnNivelActual;
@@ -25,25 +25,12 @@ public class ConfiguracionesVista extends JFrame {
 	private JButton btnVelocidadJuego;
 	private JButton btnDificultadPorNivel;
 
-	/**
-	 * Launch the application.
-	 */
+	// Main (Pruebas)
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ConfiguracionesVista frame = new ConfiguracionesVista();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		ConfiguracionesVista vista = new ConfiguracionesVista();
 	}
 
-	/**s
-	 * Create the frame.
-	 */
+	// Constructor
 	public ConfiguracionesVista() {
     	initComponents();
         setTitle("Configuraciones | CRUD");
@@ -51,8 +38,10 @@ public class ConfiguracionesVista extends JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
         getContentPane().setLayout(null);
+        setVisible(true);
 	}
 
+	// Inicializar componentes
 	public void initComponents() {
         btnTipoEnemigos = new JButton("Tipo de enemigos");
         btnTipoEnemigos.setBounds(38, 26, 295, 27);
@@ -83,6 +72,7 @@ public class ConfiguracionesVista extends JFrame {
         getContentPane().add(btnDificultadPorNivel);
 	}
 	
+	// Configurar escuchadores
 	public void setEscuchadores(ActionListener escuchador) {
 	    btnTipoEnemigos.addActionListener(escuchador);
 	    btnNivelActual.addActionListener(escuchador);
@@ -93,7 +83,13 @@ public class ConfiguracionesVista extends JFrame {
 	    btnDificultadPorNivel.addActionListener(escuchador);
 	}
 
-  public void mostrarMsj(String msg) {
-      JOptionPane.showMessageDialog(this, msg, "CRUD", JOptionPane.INFORMATION_MESSAGE);
-  }
+	// Método mostrar mensaje
+	public void mostrarMsj(String msg) {
+		JOptionPane.showMessageDialog(this, msg, "CRUD", JOptionPane.INFORMATION_MESSAGE);
+    }
+	
+	// Método cerrar
+	public void cerrar() {
+		dispose();
+	}
 }

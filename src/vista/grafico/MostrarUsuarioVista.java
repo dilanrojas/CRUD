@@ -15,38 +15,27 @@ import javax.swing.JTextField;
  */
 
 public class MostrarUsuarioVista extends JFrame {
-
+	// Componentes gráficos
 	private static final long serialVersionUID = 1L;
 	private JTextField tfNombre;
 	private JTextField tfNivel;
 	private JTextField tfPuntaje;
 
-	/**
-	 * Launch the application.
-	 */
+	// Main (Pruebas)
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MostrarUsuarioVista frame = new MostrarUsuarioVista();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		MostrarUsuarioVista vista = new MostrarUsuarioVista();
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	// Constructor
 	public MostrarUsuarioVista() {
         setTitle("Usuario | CRUD");
         setSize(250, 320);
         setResizable(false);
         setLocationRelativeTo(null);
+        setVisible(true);
 	}
 	
+	// Inicializar componentes
 	public void initComponents() {
 		getContentPane().setLayout(null);
 		
@@ -81,6 +70,7 @@ public class MostrarUsuarioVista extends JFrame {
         getContentPane().add(lblPuntaje);
 	}
 
+	// Setters
 	public void setTfNombre(JTextField tfNombre) {
 		this.tfNombre = tfNombre;
 	}
@@ -94,12 +84,13 @@ public class MostrarUsuarioVista extends JFrame {
 		this.tfPuntaje = tfPuntaje;
 	};
 
-  public void mostrarMsj(String msg) {
-      JOptionPane.showMessageDialog(this, msg, "CRUD", JOptionPane.INFORMATION_MESSAGE);
-  }
+	// Método mostrar mensaje
+	public void mostrarMsj(String msg) {
+		JOptionPane.showMessageDialog(this, msg, "CRUD", JOptionPane.INFORMATION_MESSAGE);
+     }
 	
+	// Método cerrar
 	public void cerrar() {
 		dispose();
 	}
-	
 }

@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
+import javax.swing.JInternalFrame;
 
 /**
  * @author Dilan Rojas
@@ -19,39 +20,28 @@ import javax.swing.ListSelectionModel;
  */
 
 public class MostrarVista extends JFrame {
-
+	// Componentes gráficos
 	private static final long serialVersionUID = 1L;
 	private JTextField tfBuscarInput;
 	private JButton btnBuscar;
 	private JList listaUsuarios;
 
-	/**
-	 * Launch the application.
-	 */
+	// Main (Pruebas)
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MostrarVista frame = new MostrarVista();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		MostrarVista vista = new MostrarVista();
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	// Constructor
 	public MostrarVista() {
 		initComponents();
         setTitle("Mostrar | CRUD");
         setSize(750, 400);
         setResizable(false);
         setLocationRelativeTo(null);
+        setVisible(true);
 	}
 
+	// Inicializar componentes
 	public void initComponents() {
 		getContentPane().setLayout(null);
 		
@@ -71,11 +61,12 @@ public class MostrarVista extends JFrame {
         
         listaUsuarios = new JList();
         listaUsuarios.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        listaUsuarios.setBounds(111, 118, 506, 176);
+        listaUsuarios.setBounds(111, 125, 506, 206);
         getContentPane().add(listaUsuarios);
         setVisible(true);
 	}
 	
+	// Setters & Getters
 	public String getTfBuscarInput() {
 		return tfBuscarInput.getText();
 	}
@@ -83,15 +74,18 @@ public class MostrarVista extends JFrame {
 	public void setListaUsuarios(JList listaUsuarios) {
 		this.listaUsuarios = listaUsuarios;
 	}
-
-	public void mostrarMsj(String msg) {
-	    JOptionPane.showMessageDialog(this, msg, "CRUD", JOptionPane.INFORMATION_MESSAGE);
-	}
 	
+	// Configurar escuchadores
 	public void setEscuchadores(ActionListener escuchador) {
 		btnBuscar.addActionListener(escuchador);
 	}
 	
+	// Método mostrar mensaje
+	public void mostrarMsj(String msg) {
+	    JOptionPane.showMessageDialog(this, msg, "CRUD", JOptionPane.INFORMATION_MESSAGE);
+	}
+	
+	// Método cerrar
 	public void cerrar() {
 		dispose();
 	}
