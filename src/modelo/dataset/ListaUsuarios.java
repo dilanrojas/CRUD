@@ -13,6 +13,7 @@ public class ListaUsuarios {
 	// Atributos
 	private Usuario[] lista;
 	private int size;
+	private int ultimoID;
 	private final int TAMANO_INICIAL = 20;
 	
 	// === Constructores ===
@@ -21,15 +22,17 @@ public class ListaUsuarios {
 	public ListaUsuarios() {
 		this.lista = new Usuario[TAMANO_INICIAL];
 		this.size = 0;
+		this.ultimoID = 0;
 	}
 	
 	// Lista con tamaño personalizado
 	public ListaUsuarios(int tamano) {
 		this.lista = new Usuario[Math.max(tamano, 1)];
 		this.size = 0;
+		this.ultimoID = 0;
 	}
 	
-	// === MéTODOS ===
+	// === MÉTODOS ===
 	
 	// Obtener
 	public Usuario getElemento(int index) {
@@ -42,10 +45,11 @@ public class ListaUsuarios {
 		if (usuario == null) return false;
 		if (size >= lista.length) crecer(); 
 		lista[size++] = usuario;
+		usuario.setID(++ultimoID);
 		return true;
 	}
 	
-	// Crecer
+  // Crecer
   private void crecer() {
       int nuevoTamano = lista.length * 2;
       Usuario[] nuevaLista = new Usuario[nuevoTamano];
@@ -53,21 +57,36 @@ public class ListaUsuarios {
           nuevaLista[i] = lista[i];
       }
       lista = nuevaLista;
-      System.out.println("Dataset ampliado a " + nuevoTamano + " elementos.");
+  }
+  
+  // Crecer (sobrecarga)
+  private Usuario[] crecer(Usuario[] arreglo) {
+      int nuevoTamano = arreglo.length * 2;
+      Usuario[] nuevaLista = new Usuario[nuevoTamano];
+      for (int i = 0; i < arreglo.length; i++) {
+          nuevaLista[i] = arreglo[i];
+      }
+      return nuevaLista;
   }
   
   // Imprimir
   public String imprimir() {
-      String valores = "";
-      for (int i = 0; i < size; i++) {
-          valores = valores + lista[i] + "\n";
+      if (size == 0 || lista == null) return null;
+      String usuarios = "";
+      for (Usuario usuario : lista) {
+    	  if (usuario != null) usuarios += usuario.toString() + "\n";
       }
-      return valores;
+      return usuarios;
   }
   
-  // Getters y setters
+  // Obtener size
   public int getSize() {
       return size;
+  }
+  
+  // Obtener ultimoID
+  public int getUltimoID() {
+	  return ultimoID;
   }
 
   // Verificar si la lista está vacía
@@ -77,7 +96,63 @@ public class ListaUsuarios {
 
   // Limpiar la lista
   public void clear() {
-  	for (Usuario usuario : lista) usuario = null;
-    size = 0;
-	}
+	for (int i = 0; i < size; i++) lista[i] = null;
+	size = 0;
+  }
+  
+  // Corrimiento
+  public void corrimiento(int index) {
+	  for (int i = index; i < size - 1; i++) {
+		  lista[i] = lista[i + 1];
+	  }
+	  lista[size - 1] = null;
+	  size--;
+  }
+  
+  // Eliminar
+  public boolean eliminar(int index) {
+	  if (index < 0 || index >= size) return false;
+	  corrimiento(index);
+	  return true;
+  }
+  
+  // === BÚSQUEDAS ===
+  
+  // Buscar por nombre, ID y nivel
+  public Usuario[] buscar(String entrada) {
+	  Usuario[] coincidencias = new Usuario[10];
+	  int cantidadCoincidencias = 0;
+	  
+	  // Comprobar si la entrada es un numero (ID o Nivel) o no.
+	  try {
+		  // Si es un numero, se busca por ID y Nivel.
+		  int entradaNumero = Integer.parseInt(entrada);
+
+		  for (Usuario usuario : lista) {
+			  if (usuario != null && (usuario.getNivel() == entradaNumero || usuario.getID() == entradaNumero)) {
+				  if (coincidencias.length >= cantidadCoincidencias) coincidencias = crecer(coincidencias);
+				  coincidencias[cantidadCoincidencias++] = usuario;
+			  }
+		  }
+		  
+	  } catch (NumberFormatException e) {
+		  // No es un número, se busca solo por nombre
+		  String entradaNormalizada = entrada.toLowerCase();
+		  
+		  for (Usuario usuario: lista) {
+			  if (usuario != null && usuario.getNombre().toLowerCase().contains(entradaNormalizada)) {
+				  if (coincidencias.length >= cantidadCoincidencias) coincidencias = crecer(coincidencias);
+				  coincidencias[cantidadCoincidencias++] = usuario;
+			  }
+		  }
+	  }
+	  
+	    // Devolver arreglo sin espacios vacíos
+	    Usuario[] resultadosFinales = new Usuario[cantidadCoincidencias];
+	    for (int i = 0; i < cantidadCoincidencias; i++) {
+	        resultadosFinales[i] = coincidencias[i];
+	    }
+
+	    return resultadosFinales;
+  }
 }

@@ -1,5 +1,14 @@
 package modelo.dao.archivoJSON;
 
+import java.io.IOException;
+
+import modelo.Usuario;
+import modelo.dao.IUsuarioDAO;
+
+import modelo.dao.archivoJSON.EscritorJSON;
+import modelo.dao.archivoJSON.LectorJSON;
+import modelo.dataset.ListaUsuarios;
+
 /**
  * @author Dilan Rojas
  * @date Nov 7, 2025
@@ -7,6 +16,60 @@ package modelo.dao.archivoJSON;
  * @description description
  */
 
-public class UsuarioDAO {
+public class UsuarioDAO implements IUsuarioDAO {
+	// Componentes
+	private EscritorJSON escritor;
+	private LectorJSON lector;
+	private ListaUsuarios dataset;
+	public final static String FILE_NAME = "data/usuariosData.json";
+	
+	public UsuarioDAO(ListaUsuarios dataset) {
+		this.dataset = dataset;
+		this.escritor = new EscritorJSON(dataset, FILE_NAME);
+		// PENDIENTE --> this.lector = new LectorJSON(dataset, FILE_NAME);
+		
+		cargarUsuarios();
+	}
+
+	@Override
+	public void cargarUsuarios() {
+		// PEDIENTE --> try, catch lector.readAll();
+	}
+
+	@Override
+	public void guardarDataset() {
+		try {
+			escritor.writeAll();
+		} catch (IOException e) {
+			System.err.println("Error al guardar el archivo JSON: " + e.getMessage());
+		}
+	}
+
+	@Override
+	public boolean agregar(Usuario usuario) {
+		if (usuario == null) return false;
+		dataset.agregar(usuario);
+		guardarDataset();
+		return true;
+	}
+
+	@Override
+	public boolean actualizar(Usuario usuario, String contrasena) {
+		if (usuario == null) return false;
+		usuario.setContrasena(contrasena);
+		guardarDataset();
+		return true;
+	}
+
+	@Override
+	public boolean eliminar(int id) {
+		dataset.eliminar(id);
+		return false;
+	}
+
+	@Override
+	public Usuario[] buscar(String entrada) {
+		return dataset.buscar(entrada);
+	}
 
 }

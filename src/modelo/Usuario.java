@@ -13,10 +13,7 @@ public class Usuario {
 	private String contrasena;
 	private int nivel;
 	private int puntaje;
-	private final int ID;
-	
-	// Contador (ID único e incremental)
-	private static int contadorID = 0;
+	private int ID;
 	
 	// Constructor
 	public Usuario(
@@ -27,7 +24,7 @@ public class Usuario {
 		this.contrasena = contrasena;
 		this.nivel = 0;
 		this.puntaje = 0;
-		this.ID = contadorID++;
+		this.ID = 0;
 	}
 
 	// Getters & Setters
@@ -65,5 +62,15 @@ public class Usuario {
 
 	public int getID() {
 		return ID;
+	}
+	
+	public void setID(int ID) {
+		this.ID = ID;
+	}
+
+	@Override
+	public String toString() {
+		return "Usuario [nombre=" + nombre + ", contrasena=" + contrasena + ", nivel=" + nivel + ", puntaje=" + puntaje
+				+ ", ID=" + ID + "]";
 	}
 }

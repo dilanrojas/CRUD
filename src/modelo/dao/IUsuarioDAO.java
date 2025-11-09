@@ -21,11 +21,13 @@ public interface IUsuarioDAO {
   public abstract boolean agregar(Usuario usuario);
 
   // Actualiza y guarda la contraseña de un usuario
-  public abstract boolean actualizar(Usuario usuario);
+  public abstract boolean actualizar(Usuario usuario, String contrasena);
 
   // Elimina un usuario de la lista
   public abstract boolean eliminar(int id);
 
   // Busca un usuario en la lista
-  public abstract Usuario buscar(int id);
+  // por nivel, id o nombre, devolviendo un array
+  // con los usuarios que coinciden
+  public abstract Usuario[] buscar(String entrada);
 }

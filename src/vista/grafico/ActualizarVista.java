@@ -1,116 +1,72 @@
 package vista.grafico;
-
-import javax.swing.*;
-import java.awt.event.ActionListener;
-
 /**
  * @author Ana
  * @date Nov 5, 2025
  * @version 1.0
- * @description description
+ * @description Clase vista-actualizar para crear la vista grafica del actualizar datos
  */
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class ActualizarVista extends JFrame {
-	// Componentes gráficos
-	private static final long serialVersionUID = 1L;
-	private JRadioButton rbtnNombre, rbtnNivel, rbtnPuntaje;
-	private JTextField txtBuscar, txtNombre, txtNivel, txtPuntaje, txtNuevaContra;
-	private JButton btnBuscar, btnActualizar, btnCerrar;
 
-	// Main (pruebas)
+	private static final long serialVersionUID = 1L;
+
+	private JTextField txtBuscar;
+	private JButton btnBuscar, btnSeleccionar, btnCerrar;
+	private JList<String> listaUsuarios; 
+	private JButton btnRegresar;
+
+	// Main para pruebas
 	public static void main(String[] args) {
-		ActualizarVista ac = new ActualizarVista();
+		ActualizarVista vista = new ActualizarVista();
 	}
 
 	// Constructor
 	public ActualizarVista() {
 		setTitle("Actualizar");
-		setSize(500, 500);
+		setSize(500, 450);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initComponents();
 		setVisible(true);
 	}
 
-	// Inicializar todos los componentes
 	public void initComponents() {
 		getContentPane().setLayout(null);
 
-		JLabel lblBuscarPor = new JLabel("Buscar por:");
-		lblBuscarPor.setBounds(10, 11, 100, 25);
-		getContentPane().add(lblBuscarPor);
-
-		rbtnNombre = new JRadioButton("Nombre");
-		rbtnNivel = new JRadioButton("Nivel");
-		rbtnPuntaje = new JRadioButton("Puntaje");
-
-		ButtonGroup grupo = new ButtonGroup();
-		grupo.add(rbtnNombre);
-		grupo.add(rbtnNivel);
-		grupo.add(rbtnPuntaje);
-
-		rbtnNombre.setBounds(10, 40, 80, 25);
-		rbtnNivel.setBounds(10, 72, 80, 25);
-		rbtnPuntaje.setBounds(10, 110, 100, 25);
-
-		getContentPane().add(rbtnNombre);
-		getContentPane().add(rbtnNivel);
-		getContentPane().add(rbtnPuntaje);
-
-		JLabel lblBuscar = new JLabel("Busca aqui :");
-		lblBuscar.setBounds(237, 40, 80, 25);
+		JLabel lblBuscar = new JLabel("Buscar usuario:");
+		lblBuscar.setFont(new Font("Monospaced", Font.BOLD, 14));
+		lblBuscar.setBounds(10, 55, 150, 25);
 		getContentPane().add(lblBuscar);
 
 		txtBuscar = new JTextField();
-		txtBuscar.setBounds(204, 72, 150, 25);
+		txtBuscar.setBounds(170, 56, 180, 25);
 		getContentPane().add(txtBuscar);
 
 		btnBuscar = new JButton("Buscar");
-		btnBuscar.setBounds(226, 110, 100, 25);
+		btnBuscar.setBounds(376, 56, 100, 25);
 		getContentPane().add(btnBuscar);
+		
+		JScrollPane scrollLista = new JScrollPane();
+		scrollLista.setBounds(26, 123, 400, 150);
+		getContentPane().add(scrollLista);
 
-		JLabel lblNombre = new JLabel("Nombre:");
-		lblNombre.setBounds(30, 176, 100, 25);
-		getContentPane().add(lblNombre);
+		listaUsuarios = new JList<>();
+		scrollLista.setViewportView(listaUsuarios);
 
-		txtNombre = new JTextField();
-		txtNombre.setBounds(134, 216, 150, 25);
-		txtNombre.setEditable(false);
-		getContentPane().add(txtNombre);
-
-		JLabel lblNivel = new JLabel("Nivel:");
-		lblNivel.setBounds(30, 216, 100, 25);
-		getContentPane().add(lblNivel);
-
-		txtNivel = new JTextField();
-		txtNivel.setBounds(134, 176, 150, 25);
-		txtNivel.setEditable(false);
-		getContentPane().add(txtNivel);
-
-		JLabel lblPuntaje = new JLabel("Puntaje:");
-		lblPuntaje.setBounds(30, 252, 100, 25);
-		getContentPane().add(lblPuntaje);
-
-		txtPuntaje = new JTextField();
-		txtPuntaje.setBounds(134, 252, 150, 25);
-		txtPuntaje.setEditable(false);
-		getContentPane().add(txtPuntaje);
-
-		JLabel lblNuevaContra = new JLabel("Nueva contraseña:");
-		lblNuevaContra.setBounds(30, 342, 150, 25);
-		getContentPane().add(lblNuevaContra);
-
-		txtNuevaContra = new JTextField();
-		txtNuevaContra.setBounds(168, 342, 150, 25);
-		getContentPane().add(txtNuevaContra);
-
-		btnActualizar = new JButton("Actualizar");
-		btnActualizar.setBounds(54, 378, 120, 25);
-		getContentPane().add(btnActualizar);
+		btnSeleccionar = new JButton("Seleccionar");
+		btnSeleccionar.setBounds(93, 304, 100, 25);
+		getContentPane().add(btnSeleccionar);
 
 		btnCerrar = new JButton("Cerrar");
-		btnCerrar.setBounds(226, 378, 120, 25);
+		btnCerrar.setBounds(241, 304, 100, 25);
 		getContentPane().add(btnCerrar);
+		
+		btnRegresar = new JButton("Regresar");
+		btnRegresar.setBounds(170, 357, 93, 25);
+		getContentPane().add(btnRegresar);
 	}
 
 	// Getters
@@ -118,46 +74,39 @@ public class ActualizarVista extends JFrame {
 		return txtBuscar;
 	}
 
-	public JTextField getTxtNuevaContra() {
-		return txtNuevaContra;
-	}
-
 	public JButton getBtnBuscar() {
 		return btnBuscar;
 	}
 
-	public JButton getBtnActualizar() {
-		return btnActualizar;
+	public JButton getBtnSeleccionar() {
+		return btnSeleccionar;
 	}
 
 	public JButton getBtnCerrar() {
 		return btnCerrar;
 	}
 
-	public JRadioButton getRbtnNombre() {
-		return rbtnNombre;
+	public JButton getBtnRegresar() {
+		return btnRegresar;
 	}
 
-	public JRadioButton getRbtnNivel() {
-		return rbtnNivel;
+	public JList<String> getListaUsuarios() {
+		return listaUsuarios;
 	}
 
-	public JRadioButton getRbtnPuntaje() {
-		return rbtnPuntaje;
-	}
-
+	// Mostrar mensajes
 	public void mostrarMsj(String msj) {
 		JOptionPane.showMessageDialog(this, msj);
 	}
 
-	// Configurar escuchadores
+	// Escuchadores
 	public void setEscuchadores(ActionListener e) {
 		btnBuscar.addActionListener(e);
-		btnActualizar.addActionListener(e);
+		btnSeleccionar.addActionListener(e);
 		btnCerrar.addActionListener(e);
+		btnRegresar.addActionListener(e);
 	}
 
-	// Metodo cerrar
 	public void cerrar() {
 		dispose();
 	}
