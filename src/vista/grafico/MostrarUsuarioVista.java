@@ -20,6 +20,7 @@ public class MostrarUsuarioVista extends JFrame {
 	private JTextField tfNombre;
 	private JTextField tfNivel;
 	private JTextField tfPuntaje;
+	private JTextField tfID;
 
 	// Main (Pruebas)
 	public static void main(String[] args) {
@@ -28,8 +29,10 @@ public class MostrarUsuarioVista extends JFrame {
 
 	// Constructor
 	public MostrarUsuarioVista() {
+		initComponents();
+		
         setTitle("Usuario | CRUD");
-        setSize(250, 320);
+        setSize(250, 370);
         setResizable(false);
         setLocationRelativeTo(null);
         setVisible(true);
@@ -40,49 +43,63 @@ public class MostrarUsuarioVista extends JFrame {
 		getContentPane().setLayout(null);
 		
 		JLabel lblNombre = new JLabel("Nombre");
-        lblNombre.setBounds(33, 12, 75, 17);
+        lblNombre.setBounds(36, 46, 75, 17);
         getContentPane().add(lblNombre);
         
         tfNombre = new JTextField();
         tfNombre.setEditable(false);
-        tfNombre.setBounds(33, 37, 114, 21);
+        tfNombre.setBounds(36, 71, 186, 21);
         getContentPane().add(tfNombre);
         tfNombre.setColumns(10);
         
         tfNivel = new JTextField();
         tfNivel.setEditable(false);
         tfNivel.setColumns(10);
-        tfNivel.setBounds(33, 109, 114, 21);
+        tfNivel.setBounds(36, 143, 186, 21);
         getContentPane().add(tfNivel);
         
         JLabel lblN = new JLabel("Nivel");
-        lblN.setBounds(33, 84, 75, 17);
+        lblN.setBounds(36, 118, 75, 17);
         getContentPane().add(lblN);
         
         tfPuntaje = new JTextField();
         tfPuntaje.setEditable(false);
         tfPuntaje.setColumns(10);
-        tfPuntaje.setBounds(33, 193, 114, 21);
+        tfPuntaje.setBounds(36, 227, 186, 21);
         getContentPane().add(tfPuntaje);
         
         JLabel lblPuntaje = new JLabel("Puntaje");
-        lblPuntaje.setBounds(33, 168, 75, 17);
+        lblPuntaje.setBounds(36, 202, 75, 17);
         getContentPane().add(lblPuntaje);
+        
+        JLabel lblId = new JLabel("ID");
+        lblId.setBounds(36, 277, 75, 17);
+        getContentPane().add(lblId);
+        
+        tfID = new JTextField();
+        tfID.setEditable(false);
+        tfID.setColumns(10);
+        tfID.setBounds(36, 302, 186, 21);
+        getContentPane().add(tfID);
 	}
 
 	// Setters
-	public void setTfNombre(JTextField tfNombre) {
-		this.tfNombre = tfNombre;
+	public void setTfNombre(String nombre) {
+		this.tfNombre.setText(nombre);;
 	}
 
-	public void setTfNivel(JTextField tfNivel) {
-		this.tfNivel = tfNivel;
+	public void setTfNivel(int nivel) {
+		this.tfNivel.setText("" + nivel);;
 	}
 
 
-	public void setTfPuntaje(JTextField tfPuntaje) {
-		this.tfPuntaje = tfPuntaje;
-	};
+	public void setTfPuntaje(int puntaje) {
+		this.tfPuntaje.setText("" + puntaje);;
+	}
+	
+	public void setTfID(int id) {
+		this.tfID.setText("" + id);;
+	}
 
 	// Método mostrar mensaje
 	public void mostrarMsj(String msg) {

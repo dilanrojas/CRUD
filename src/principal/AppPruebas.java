@@ -24,7 +24,6 @@ public class AppPruebas {
 		Usuario sebastian = new Usuario("Sebastián", "Xuz{oo7");
 		Usuario anabelle = new Usuario("Anabelle", "woh1eW{");
 		
-		
 		// === PRUEBAS ===
 		
 		// Agregar
