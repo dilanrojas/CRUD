@@ -101,7 +101,7 @@ public class InsertarVista extends JFrame {
 		return txtContrasena.getText();
 	}
 
-	public int getGameLevel() {
+	public int getNivel() {
 		return Integer.parseInt(txtGameLevel.getText());
 	}
 

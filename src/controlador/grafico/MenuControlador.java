@@ -54,6 +54,7 @@ public class MenuControlador implements ActionListener {
 
         if (fuente == vistaMenu.getBtnMostrar()) {
             vistaMostrar = new MostrarVista();
+            vistaUsuarioMostrar = new MostrarUsuarioVista();
             controladorMost = new MostrarControlador(modelo, vistaMostrar, vistaUsuarioMostrar);
 
         } else if (fuente == vistaMenu.getBtnInsertar()) {

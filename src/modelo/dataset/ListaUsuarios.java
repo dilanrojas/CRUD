@@ -45,9 +45,6 @@ public class ListaUsuarios {
 	// Agregar
 	public boolean agregar(Usuario usuario) {
 		if (usuario == null) return false;
-		if (usuario.getNombre().isBlank() || usuario.getNombre() == "") return false;
-		if (usuario.getNivel() > 10 || usuario.getNivel() < 0) return false;
-		if (usuario.getContrasena().isBlank() || usuario.getContrasena() == "") return false;
 		if (size >= lista.length) crecer();
 		lista[size++] = usuario;
 		usuario.setID(++ultimoID);

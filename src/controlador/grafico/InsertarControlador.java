@@ -28,7 +28,39 @@ public class InsertarControlador implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Usuario usuario = new Usuario(vista.getNickname(), vista.getContrasena(), vista.getGameLevel(), 0, 0);
-		if (!modelo.agregar(usuario)) vista.mostrarMsj("No es posible agregar el usuario");
+		
+		// Realizar comprobaciones antes de agregar
+		if (vista.getNickname() == "" || vista.getNickname().isBlank()) {
+			vista.mostrarMsj("Ingrese un nombre válido");
+			return;
+		}
+		
+		if (vista.getContrasena() == "" || vista.getContrasena().isBlank()) {
+			vista.mostrarMsj("Ingrese una contraseña válida");
+			return;
+		}
+		
+		// Recuperar nivel como numero
+		int nivel = 0;
+
+        try {
+            nivel = vista.getNivel();
+            if (nivel < 0 || nivel > 10) {
+            	vista.mostrarMsj("Ingrese un nivel válido (entre 0 y 10)");
+            	return;
+            }
+        } catch (NumberFormatException e1) {
+        	vista.mostrarMsj("El nivel debe ser un numero");
+        	return;
+        }
+		
+		Usuario usuario = null;
+		try {
+			usuario = new Usuario(vista.getNickname(), vista.getContrasena(), nivel, 0, 0);
+			modelo.agregar(usuario);
+			vista.mostrarMsj("Usuario agregado corractamente");
+		} finally {
+			vista.mostrarMsj("No es posible agregar el usuario");
+		}
 	}
 }
