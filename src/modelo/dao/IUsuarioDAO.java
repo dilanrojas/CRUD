@@ -1,5 +1,7 @@
 package modelo.dao;
 
+import java.io.IOException;
+
 import modelo.Usuario;
 
 /**

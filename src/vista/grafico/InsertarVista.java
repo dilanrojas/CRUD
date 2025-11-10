@@ -48,50 +48,50 @@ public class InsertarVista extends JFrame {
 	
 	
 	public void initComponents() {
-		getContentPane().setLayout(null);
-		
-		lblNickname = new JLabel("Ingrese Nickname");
-		lblNickname.setBounds(136, 40, 110, 17);
-		lblNickname.setHorizontalAlignment(SwingConstants.CENTER);
-		getContentPane().add(lblNickname);
-		
-		txtNickname = new JTextField();
-		txtNickname.setBackground(new Color(255, 255, 255));
-		txtNickname.setBounds(105, 60, 186, 30);
-		txtNickname.setHorizontalAlignment(SwingConstants.CENTER);
-		getContentPane().add(txtNickname);
-		
-		lblContrasena = new JLabel("Contraseña");
-		lblContrasena.setBounds(136, 100, 110, 17);
-		lblContrasena.setHorizontalAlignment(SwingConstants.CENTER);
-		getContentPane().add(lblContrasena);
-		
-		txtContrasena = new JTextField();
-		txtContrasena.setBackground(new Color(255, 255, 255));
-		txtContrasena.setBounds(105, 120, 186, 30);
-		txtContrasena.setHorizontalAlignment(SwingConstants.CENTER);
-		getContentPane().add(txtContrasena);
-		txtContrasena.setColumns(10);
-		
-		lblGameLevel = new JLabel("Nivel de juego");
-		lblGameLevel.setBounds(136, 162, 100, 20);
-		lblGameLevel.setHorizontalAlignment(SwingConstants.CENTER);
-		getContentPane().add(lblGameLevel);
-		
-		txtGameLevel = new JTextField();
-		txtGameLevel.setBackground(new Color(255, 255, 255));
-		txtGameLevel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		txtGameLevel.setBounds(105, 194, 186, 30);
-		txtGameLevel.setHorizontalAlignment(SwingConstants.CENTER);
-		getContentPane().add(txtGameLevel);
-		txtGameLevel.setColumns(10);
-		
-		btnCrear = new JButton("Crear");
-		btnCrear.setFont(new Font("Dialog", Font.BOLD, 12));
-		btnCrear.setBackground(new Color(255, 255, 255));
-		btnCrear.setBounds(105, 236, 186, 30);
-		getContentPane().add(btnCrear);
-	}
+        getContentPane().setLayout(null);
+        
+        lblNickname = new JLabel("Ingrese Nickname");
+        lblNickname.setBounds(145, 30, 110, 20);
+        lblNickname.setHorizontalAlignment(SwingConstants.CENTER);
+        getContentPane().add(lblNickname);
+        
+        txtNickname = new JTextField();
+        txtNickname.setBackground(new Color(255, 255, 255));
+        txtNickname.setBounds(110, 60, 180, 30);
+        txtNickname.setHorizontalAlignment(SwingConstants.CENTER);
+        getContentPane().add(txtNickname);
+        
+        lblContrasena = new JLabel("Contraseña");
+        lblContrasena.setBounds(145, 102, 110, 20);
+        lblContrasena.setHorizontalAlignment(SwingConstants.CENTER);
+        getContentPane().add(lblContrasena);
+        
+        txtContrasena = new JTextField();
+        txtContrasena.setBackground(new Color(255, 255, 255));
+        txtContrasena.setBounds(110, 127, 180, 30);
+        txtContrasena.setHorizontalAlignment(SwingConstants.CENTER);
+        getContentPane().add(txtContrasena);
+        txtContrasena.setColumns(10);
+        
+        lblGameLevel = new JLabel("Nivel de juego");
+        lblGameLevel.setBounds(145, 169, 110, 20);
+        lblGameLevel.setHorizontalAlignment(SwingConstants.CENTER);
+        getContentPane().add(lblGameLevel);
+        
+        txtGameLevel = new JTextField();
+        txtGameLevel.setBackground(new Color(255, 255, 255));
+        txtGameLevel.setFont(new Font("Dialog", Font.PLAIN, 12));
+        txtGameLevel.setBounds(110, 194, 180, 30);
+        txtGameLevel.setHorizontalAlignment(SwingConstants.CENTER);
+        getContentPane().add(txtGameLevel);
+        txtGameLevel.setColumns(10);
+        
+        btnCrear = new JButton("Crear");
+        btnCrear.setFont(new Font("Dialog", Font.BOLD, 12));
+        btnCrear.setBackground(new Color(255, 255, 255));
+        btnCrear.setBounds(110, 239, 180, 30);
+        getContentPane().add(btnCrear);
+    }
 
 	public String getNickname() {
 		return txtNickname.getText();

@@ -2,6 +2,7 @@ package controlador.grafico;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import modelo.Usuario;
 import modelo.dao.IUsuarioDAO;
