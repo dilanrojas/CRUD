@@ -38,9 +38,9 @@ public class MenuControlador implements ActionListener {
 	private InsertarControlador controladorIns;
 	private MostrarControlador controladorMost;
 
-	public MenuControlador(MenuVista vistaMenu, IUsuarioDAO modelo) {
+	public MenuControlador(IUsuarioDAO modelo, MenuVista vistaMenu) {
+		this.modelo = modelo;
         this.vistaMenu = vistaMenu;
-        this.modelo = modelo;
 
         // Escuchar los eventos del menú principal
         vistaMenu.setEscuchadores(this);
@@ -50,26 +50,27 @@ public class MenuControlador implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Object fuente = e.getSource();
 
-        if (fuente == vistaMenu.getjM_Mostrar()) {
+        if (fuente == vistaMenu.getBtnMostrar()) {
             vistaMostrar = new MostrarVista();
             controladorMost = new MostrarControlador(modelo, vistaMostrar, vistaUsuarioMostrar);
 
-        } else if (fuente == vistaMenu.getjM_Insertar()) {
+        } else if (fuente == vistaMenu.getBtnInsertar()) {
             vistaInsertar = new InsertarVista();
-            controladorIns = new InsertarControlador(vistaInsertar, modelo);
+            controladorIns = new InsertarControlador(modelo, vistaInsertar);
 
-        } else if (fuente == vistaMenu.getjM_Actualizar()) {
+        } else if (fuente == vistaMenu.getBtnActualizar()) {
             vistaActualizar = new ActualizarVista();
+            vistaActualizarUsuario = new ActualizarUsuarioVista();
             controladorAct = new ActualizarControlador(modelo, vistaActualizar, vistaActualizarUsuario);
 
-        } else if (fuente == vistaMenu.getjM_Eliminar()) {
+        /*} else if (fuente == vistaMenu.getBtnEliminar()) {
             vistaEliminar = new EliminarVista();
-            controladorEl = new EliminarControlador(vistaEliminar, modelo);
+            controladorEl = new EliminarControlador(vistaEliminar, modelo);*/
 
         /* PENDIENTE --> } else if (fuente == vistaMenu.getjM_Config()) {
             vistaConfg = new ConfiguracionesVista();
             controladorConfg = new ConfiguracionesControlador(vistaConfg, modelo);*/
-        } else if (fuente == vistaMenu.getjM_Salir()) {
+        } else if (fuente == vistaMenu.getBtnSalir()) {
             vistaMenu.cerrar();
         }
     }

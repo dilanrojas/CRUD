@@ -9,16 +9,17 @@ package vista.grafico;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
+import java.awt.BorderLayout;
 
 public class MenuVista extends JFrame {
 	// Componentes gráficos
 	private static final long serialVersionUID = 1L;
-	private JMenuItem jM_Actualizar;
-	private JMenuItem jM_Insertar;
-	private JMenuItem jM_Eliminar;
-	private JMenuItem jM_Mostrar;
-	private JMenuItem jM_Config;
-	private JMenuItem jM_Salir;
+	private JButton btnInsertar;
+	private JButton btnMostrar;
+	private JButton btnActualizar;
+	private JButton btnEliminar;
+	private JButton btnConfiguraciones;
+	private JButton btnSalir;
 
 	// Main (Pruebas)
 	public static void main(String[] args) {
@@ -29,75 +30,58 @@ public class MenuVista extends JFrame {
 	public MenuVista() {
 		initComponents();
 		setTitle("MENÚ PRINCIPAL");
-		setSize(500, 500);
+		setSize(500, 320);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		setLocationRelativeTo(null);
-		getContentPane().setLayout(null);
 		setVisible(true);
 	}
 
 	// Inicializar componentes
 	private void initComponents() {
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-
-		JMenu menuPrincipal = new JMenu("Opciones");
-		menuBar.add(menuPrincipal);
-
-		jM_Actualizar = new JMenuItem("Actualizar");
-		menuPrincipal.add(jM_Actualizar);
-
-		jM_Insertar = new JMenuItem("Insertar");
-		menuPrincipal.add(jM_Insertar);
-
-		jM_Eliminar = new JMenuItem("Eliminar");
-		menuPrincipal.add(jM_Eliminar);
-
-		jM_Mostrar = new JMenuItem("Mostrar");
-		menuPrincipal.add(jM_Mostrar);
-
-		jM_Config = new JMenuItem("Configuraciones");
-		menuPrincipal.add(jM_Config);
+		getContentPane().setLayout(null);
 		
-		jM_Salir = new JMenuItem("Salir");
-		menuPrincipal.add(jM_Salir);
+		btnInsertar = new JButton("Insertar");
+		btnInsertar.setBounds(77, 54, 322, 27);
+		getContentPane().add(btnInsertar);
+		
+		btnMostrar = new JButton("Mostrar");
+		btnMostrar.setBounds(77, 92, 322, 27);
+		getContentPane().add(btnMostrar);
+		
+		btnActualizar = new JButton("Actualizar");
+		btnActualizar.setBounds(77, 131, 322, 27);
+		getContentPane().add(btnActualizar);
+		
+		btnEliminar = new JButton("Eliminar");
+		btnEliminar.setBounds(77, 170, 322, 27);
+		getContentPane().add(btnEliminar);
+		
+		btnConfiguraciones = new JButton("Configuraciones del juego");
+		btnConfiguraciones.setEnabled(false);
+		btnConfiguraciones.setBounds(77, 209, 322, 27);
+		getContentPane().add(btnConfiguraciones);
+		
+		btnSalir = new JButton("Salir");
+		btnSalir.setBounds(77, 248, 322, 27);
+		getContentPane().add(btnSalir);
 	}
 
 	// Setters & Getters
-	public JMenuItem getjM_Actualizar() {
-		return jM_Actualizar;
-	}
-
-	public JMenuItem getjM_Insertar() {
-		return jM_Insertar;
-	}
-
-	public JMenuItem getjM_Eliminar() {
-		return jM_Eliminar;
-	}
-
-	public JMenuItem getjM_Mostrar() {
-		return jM_Mostrar;
-	}
-
-	public JMenuItem getjM_Config() {
-		return jM_Config;
-	}
-	public JMenuItem getjM_Salir() {
-		return jM_Salir;
-	}
+	public JButton getBtnInsertar() { return btnInsertar; }
+	public JButton getBtnMostrar() { return btnMostrar; }
+	public JButton getBtnActualizar() { return btnActualizar; }
+	public JButton getBtnEliminar() { return btnEliminar; }
+	public JButton getBtnConfiguraciones() { return btnConfiguraciones; }
+	public JButton getBtnSalir() { return btnSalir; }
 
 	// Configurar escuchadores
 	public void setEscuchadores(ActionListener escuchador) {
-		jM_Actualizar.addActionListener(escuchador);
-		jM_Insertar.addActionListener(escuchador);
-		jM_Eliminar.addActionListener(escuchador);
-		jM_Mostrar.addActionListener(escuchador);
-		jM_Config.addActionListener(escuchador);
-		jM_Salir.addActionListener(escuchador);
-
-		System.out.println("Vista - Menú listo para escuchar eventos");
+		btnInsertar.addActionListener(escuchador);
+		btnMostrar.addActionListener(escuchador);
+		btnActualizar.addActionListener(escuchador);
+		btnEliminar.addActionListener(escuchador);
+		btnConfiguraciones.addActionListener(escuchador);
 	}
 
 	// Método mostrar mensaje
@@ -110,5 +94,4 @@ public class MenuVista extends JFrame {
 		System.out.println("CERRAR - Vista de Menú");
 		dispose();
 	}
-
 }

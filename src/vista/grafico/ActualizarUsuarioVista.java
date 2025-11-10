@@ -41,7 +41,6 @@ public class ActualizarUsuarioVista extends JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
         setVisible(true);
-        System.out.println("hey");
 	}
 	
 	// Inicializar componentes
