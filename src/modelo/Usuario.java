@@ -18,13 +18,16 @@ public class Usuario {
 	// Constructor
 	public Usuario(
 		String nombre,
-		String contrasena
+		String contrasena,
+		int nivel,
+		int puntaje,
+		int id
 	) {
 		this.nombre = nombre;
 		this.contrasena = contrasena;
-		this.nivel = 0;
-		this.puntaje = 0;
-		this.ID = 0;
+		this.nivel = nivel;
+		this.puntaje = puntaje;
+		this.ID = id;
 	}
 
 	// Getters & Setters

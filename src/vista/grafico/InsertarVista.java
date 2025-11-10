@@ -38,13 +38,6 @@ public class InsertarVista extends JFrame {
 	private JLabel lblIDIndicator;
 	private JButton btnCrear;
 	
-	
-	
-	
-	
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

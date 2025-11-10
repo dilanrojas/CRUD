@@ -1,112 +1,111 @@
 package vista.grafico;
+
+import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
+
+import javax.swing.JOptionPane;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JList;
+import javax.swing.ListSelectionModel;
+
+import modelo.Usuario;
+
 /**
- * @author Ana
+ * @author Dilan Rojas
  * @date Nov 5, 2025
  * @version 1.0
- * @description Clase vista-actualizar para crear la vista grafica del actualizar datos
+ * @description description
  */
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionListener;
 
 public class ActualizarVista extends JFrame {
-
+	// Componentes gráficos
 	private static final long serialVersionUID = 1L;
+	private JTextField tfBuscarInput;
+	private JButton btnBuscar;
+	private JList<Usuario> listaUsuarios;
+	private DefaultListModel<Usuario> modeloUsuarios;
 
-	private JTextField txtBuscar;
-	private JButton btnBuscar, btnSeleccionar, btnCerrar;
-	private JList<String> listaUsuarios; 
-	private JButton btnRegresar;
-
-	// Main para pruebas
+	// Main (Pruebas)
 	public static void main(String[] args) {
-		ActualizarVista vista = new ActualizarVista();
+		MostrarVista vista = new MostrarVista();
 	}
 
 	// Constructor
 	public ActualizarVista() {
-		setTitle("Actualizar");
-		setSize(500, 450);
-		setLocationRelativeTo(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initComponents();
-		setVisible(true);
+        setTitle("Mostrar | CRUD");
+        setSize(750, 400);
+        setResizable(false);
+        setLocationRelativeTo(null);
+        setVisible(true);
 	}
 
+	// Inicializar componentes
 	public void initComponents() {
 		getContentPane().setLayout(null);
-
-		JLabel lblBuscar = new JLabel("Buscar usuario:");
-		lblBuscar.setFont(new Font("Monospaced", Font.BOLD, 14));
-		lblBuscar.setBounds(10, 55, 150, 25);
-		getContentPane().add(lblBuscar);
-
-		txtBuscar = new JTextField();
-		txtBuscar.setBounds(170, 56, 180, 25);
-		getContentPane().add(txtBuscar);
-
-		btnBuscar = new JButton("Buscar");
-		btnBuscar.setBounds(376, 56, 100, 25);
-		getContentPane().add(btnBuscar);
 		
-		JScrollPane scrollLista = new JScrollPane();
-		scrollLista.setBounds(26, 123, 400, 150);
-		getContentPane().add(scrollLista);
-
-		listaUsuarios = new JList<>();
-		scrollLista.setViewportView(listaUsuarios);
-
-		btnSeleccionar = new JButton("Seleccionar");
-		btnSeleccionar.setBounds(93, 304, 100, 25);
-		getContentPane().add(btnSeleccionar);
-
-		btnCerrar = new JButton("Cerrar");
-		btnCerrar.setBounds(241, 304, 100, 25);
-		getContentPane().add(btnCerrar);
-		
-		btnRegresar = new JButton("Regresar");
-		btnRegresar.setBounds(170, 357, 93, 25);
-		getContentPane().add(btnRegresar);
+        tfBuscarInput = new JTextField();
+        tfBuscarInput.setToolTipText("");
+        tfBuscarInput.setBounds(111, 52, 409, 38);
+        getContentPane().add(tfBuscarInput);
+        tfBuscarInput.setColumns(10);
+        
+        JLabel lblNewLabel = new JLabel("Nombre | Nivel | Puntaje");
+        lblNewLabel.setBounds(285, 23, 154, 17);
+        getContentPane().add(lblNewLabel);
+        
+        btnBuscar = new JButton("Buscar");
+        btnBuscar.setBounds(532, 52, 85, 37);
+        getContentPane().add(btnBuscar);
+        
+        modeloUsuarios = new DefaultListModel<Usuario>();
+        listaUsuarios = new JList<Usuario>(modeloUsuarios);
+        listaUsuarios.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        listaUsuarios.setBounds(111, 125, 506, 206);
+        getContentPane().add(listaUsuarios);
 	}
-
-	// Getters
-	public JTextField getTxtBuscar() {
-		return txtBuscar;
+	
+	// Setters & Getters
+	public String getTfBuscarInput() {
+		return tfBuscarInput.getText();
 	}
-
+	
 	public JButton getBtnBuscar() {
 		return btnBuscar;
 	}
 
-	public JButton getBtnSeleccionar() {
-		return btnSeleccionar;
+	public void setListaUsuarios(Usuario[] lista) {
+		modeloUsuarios.clear();
+		for (Usuario usuario : lista) {
+			modeloUsuarios.addElement(usuario);
+		}
 	}
-
-	public JButton getBtnCerrar() {
-		return btnCerrar;
+	
+	// Obtener la lista de usuarios de la búsqueda
+	public JList<Usuario> getListaUsuarios() {
+	    return listaUsuarios;
 	}
-
-	public JButton getBtnRegresar() {
-		return btnRegresar;
+	
+	// Configurar escuchadores
+	public void setEscuchadores(ActionListener escuchador) {
+		btnBuscar.addActionListener(escuchador);
+		
 	}
-
-	public JList<String> getListaUsuarios() {
-		return listaUsuarios;
+	
+	public void setEscuchadorLista(MouseListener escuchador) {
+		listaUsuarios.addMouseListener(escuchador);
 	}
-
-	// Mostrar mensajes
-	public void mostrarMsj(String msj) {
-		JOptionPane.showMessageDialog(this, msj);
+	
+	// Método mostrar mensaje
+	public void mostrarMsj(String msg) {
+	    JOptionPane.showMessageDialog(this, msg, "CRUD", JOptionPane.INFORMATION_MESSAGE);
 	}
-
-	// Escuchadores
-	public void setEscuchadores(ActionListener e) {
-		btnBuscar.addActionListener(e);
-		btnSeleccionar.addActionListener(e);
-		btnCerrar.addActionListener(e);
-		btnRegresar.addActionListener(e);
-	}
-
+	
+	// Método cerrar
 	public void cerrar() {
 		dispose();
 	}

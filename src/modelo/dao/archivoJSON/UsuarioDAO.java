@@ -26,14 +26,18 @@ public class UsuarioDAO implements IUsuarioDAO {
 	public UsuarioDAO(ListaUsuarios dataset) {
 		this.dataset = dataset;
 		this.escritor = new EscritorJSON(dataset, FILE_NAME);
-		// PENDIENTE --> this.lector = new LectorJSON(dataset, FILE_NAME);
+		this.lector = new LectorJSON(dataset, FILE_NAME);
 		
 		cargarUsuarios();
 	}
 
 	@Override
 	public void cargarUsuarios() {
-		// PEDIENTE --> try, catch lector.readAll();
+		try {
+			lector.readAll();
+		} catch (IOException e) {
+			System.err.println("Error al guardar el archivo JSON: " + e.getMessage());
+		}
 	}
 
 	@Override
@@ -41,7 +45,7 @@ public class UsuarioDAO implements IUsuarioDAO {
 		try {
 			escritor.writeAll();
 		} catch (IOException e) {
-			System.err.println("Error al guardar el archivo JSON: " + e.getMessage());
+			
 		}
 	}
 

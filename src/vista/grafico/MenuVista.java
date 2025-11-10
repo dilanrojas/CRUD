@@ -89,13 +89,13 @@ public class MenuVista extends JFrame {
 	}
 
 	// Configurar escuchadores
-	public void setActionListener(ActionListener listener) {
-		jM_Actualizar.addActionListener(listener);
-		jM_Insertar.addActionListener(listener);
-		jM_Eliminar.addActionListener(listener);
-		jM_Mostrar.addActionListener(listener);
-		jM_Config.addActionListener(listener);
-		jM_Salir.addActionListener(listener);
+	public void setEscuchadores(ActionListener escuchador) {
+		jM_Actualizar.addActionListener(escuchador);
+		jM_Insertar.addActionListener(escuchador);
+		jM_Eliminar.addActionListener(escuchador);
+		jM_Mostrar.addActionListener(escuchador);
+		jM_Config.addActionListener(escuchador);
+		jM_Salir.addActionListener(escuchador);
 
 		System.out.println("Vista - Menú listo para escuchar eventos");
 	}

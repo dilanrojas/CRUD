@@ -1,6 +1,5 @@
 package vista.grafico;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 
@@ -14,8 +13,6 @@ import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 
 import modelo.Usuario;
-
-import javax.swing.JInternalFrame;
 
 /**
  * @author Dilan Rojas
@@ -65,7 +62,7 @@ public class MostrarVista extends JFrame {
         btnBuscar.setBounds(532, 52, 85, 37);
         getContentPane().add(btnBuscar);
         
-        modeloUsuarios = new DefaultListModel<>();
+        modeloUsuarios = new DefaultListModel<Usuario>();
         listaUsuarios = new JList<Usuario>(modeloUsuarios);
         listaUsuarios.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listaUsuarios.setBounds(111, 125, 506, 206);
@@ -75,6 +72,10 @@ public class MostrarVista extends JFrame {
 	// Setters & Getters
 	public String getTfBuscarInput() {
 		return tfBuscarInput.getText();
+	}
+	
+	public JButton getBtnBuscar() {
+		return btnBuscar;
 	}
 
 	public void setListaUsuarios(Usuario[] lista) {

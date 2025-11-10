@@ -1,12 +1,13 @@
 package vista.grafico;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.JButton;
 
 /**
  * @author Dilan Rojas
@@ -15,28 +16,32 @@ import javax.swing.JButton;
  * @description description
  */
 
-public class MostrarUsuarioVista extends JFrame {
+public class ActualizarUsuarioVista extends JFrame {
 	// Componentes gráficos
 	private static final long serialVersionUID = 1L;
 	private JTextField tfNombre;
 	private JTextField tfNivel;
 	private JTextField tfPuntaje;
 	private JTextField tfID;
+	private JTextField tfNuevaContrasena;
+	private JButton btnCambiar;
+	private JButton btnCancelar;
 
 	// Main (Pruebas)
 	public static void main(String[] args) {
-		MostrarUsuarioVista vista = new MostrarUsuarioVista();
+		ActualizarUsuarioVista vista = new ActualizarUsuarioVista();
 	}
 
 	// Constructor
-	public MostrarUsuarioVista() {
+	public ActualizarUsuarioVista() {
 		initComponents();
 		
         setTitle("Usuario | CRUD");
-        setSize(250, 370);
+        setSize(300, 520);
         setResizable(false);
         setLocationRelativeTo(null);
-        setVisible(false);
+        setVisible(true);
+        System.out.println("hey");
 	}
 	
 	// Inicializar componentes
@@ -82,6 +87,37 @@ public class MostrarUsuarioVista extends JFrame {
         tfID.setColumns(10);
         tfID.setBounds(36, 302, 186, 21);
         getContentPane().add(tfID);
+        
+        tfNuevaContrasena = new JTextField();
+        tfNuevaContrasena.setText("Nueva contraseña");
+        tfNuevaContrasena.setBounds(36, 358, 186, 34);
+        getContentPane().add(tfNuevaContrasena);
+        tfNuevaContrasena.setColumns(10);
+        
+        btnCambiar = new JButton("Cambiar");
+        btnCambiar.setBounds(36, 404, 186, 27);
+        getContentPane().add(btnCambiar);
+        
+        btnCancelar = new JButton("Cancelar");
+        btnCancelar.setBounds(36, 443, 186, 27);
+        getContentPane().add(btnCancelar);
+	}
+	
+	// Getters
+	public JButton getBtnCambiar() {
+		return btnCambiar;
+	}
+	
+	public JButton getBtnCancelar() {
+		return btnCancelar;
+	}
+	
+	public String getNuevaContrasena() {
+		return tfNuevaContrasena.getText();
+	}
+	
+	public String getID() {
+		return tfID.getText();
 	}
 
 	// Setters
@@ -92,7 +128,6 @@ public class MostrarUsuarioVista extends JFrame {
 	public void setTfNivel(int nivel) {
 		this.tfNivel.setText("" + nivel);;
 	}
-
 
 	public void setTfPuntaje(int puntaje) {
 		this.tfPuntaje.setText("" + puntaje);;
@@ -105,6 +140,12 @@ public class MostrarUsuarioVista extends JFrame {
 	@Override
 	public void setVisible(boolean value) {
 	    super.setVisible(value);
+	}
+	
+	// Escuchadores
+	public void setEscuchadores(ActionListener escuchador) {
+		this.btnCambiar.addActionListener(escuchador);
+		this.btnCancelar.addActionListener(escuchador);
 	}
 
 	// Método mostrar mensaje

@@ -68,7 +68,7 @@ public class MostrarControlador implements ActionListener {
         }
     }
 	
-    // Metodo para mostrar los datos en MostrarVistausuario
+    // Metodo para mostrar los datos en MostrarVistaUsuario
     private void mostrarUsuario(Usuario usuario) {
         vistaUsuario.setTfNombre(usuario.getNombre());
         vistaUsuario.setTfNivel(usuario.getNivel());
@@ -76,5 +76,4 @@ public class MostrarControlador implements ActionListener {
         vistaUsuario.setTfID(usuario.getID());
         vistaUsuario.setVisible(true);
     }
-	
 }
