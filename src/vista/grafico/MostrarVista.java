@@ -2,14 +2,19 @@ package vista.grafico;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
+
+import modelo.Usuario;
+
 import javax.swing.JInternalFrame;
 
 /**
@@ -24,7 +29,8 @@ public class MostrarVista extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JTextField tfBuscarInput;
 	private JButton btnBuscar;
-	private JList listaUsuarios;
+	private JList<Usuario> listaUsuarios;
+	private DefaultListModel<Usuario> modeloUsuarios;
 
 	// Main (Pruebas)
 	public static void main(String[] args) {
@@ -59,11 +65,11 @@ public class MostrarVista extends JFrame {
         btnBuscar.setBounds(532, 52, 85, 37);
         getContentPane().add(btnBuscar);
         
-        listaUsuarios = new JList();
+        modeloUsuarios = new DefaultListModel<>();
+        listaUsuarios = new JList<Usuario>(modeloUsuarios);
         listaUsuarios.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listaUsuarios.setBounds(111, 125, 506, 206);
         getContentPane().add(listaUsuarios);
-        setVisible(true);
 	}
 	
 	// Setters & Getters
@@ -71,13 +77,26 @@ public class MostrarVista extends JFrame {
 		return tfBuscarInput.getText();
 	}
 
-	public void setListaUsuarios(JList listaUsuarios) {
-		this.listaUsuarios = listaUsuarios;
+	public void setListaUsuarios(Usuario[] lista) {
+		modeloUsuarios.clear();
+		for (Usuario usuario : lista) {
+			modeloUsuarios.addElement(usuario);
+		}
+	}
+	
+	// Obtener la lista de usuarios de la búsqueda
+	public JList<Usuario> getListaUsuarios() {
+	    return listaUsuarios;
 	}
 	
 	// Configurar escuchadores
 	public void setEscuchadores(ActionListener escuchador) {
 		btnBuscar.addActionListener(escuchador);
+		
+	}
+	
+	public void setEscuchadorLista(MouseListener escuchador) {
+		listaUsuarios.addMouseListener(escuchador);
 	}
 	
 	// Método mostrar mensaje

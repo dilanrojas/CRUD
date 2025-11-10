@@ -35,7 +35,7 @@ public class MostrarUsuarioVista extends JFrame {
         setSize(250, 370);
         setResizable(false);
         setLocationRelativeTo(null);
-        setVisible(true);
+        setVisible(false);
 	}
 	
 	// Inicializar componentes
@@ -99,6 +99,10 @@ public class MostrarUsuarioVista extends JFrame {
 	
 	public void setTfID(int id) {
 		this.tfID.setText("" + id);;
+	}
+	
+	public void isVisible(boolean value) {
+		setVisible(value);
 	}
 
 	// Método mostrar mensaje

@@ -70,7 +70,6 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "Usuario [nombre=" + nombre + ", contrasena=" + contrasena + ", nivel=" + nivel + ", puntaje=" + puntaje
-				+ ", ID=" + ID + "]";
+		return nombre;
 	}
 }

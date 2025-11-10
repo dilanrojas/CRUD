@@ -1,5 +1,7 @@
 package principal;
 
+import controlador.grafico.MostrarControlador;
+
 /**
  * @author Dilan Rojas
  * @date Nov 8, 2025
@@ -56,6 +58,12 @@ public class AppPruebas {
 		for (Usuario u : modelo.buscar("Ana")) {
 			System.out.println(u.toString());
 		}
+		
+		MostrarControlador mostrarControlador = new MostrarControlador(
+				modelo,
+				new MostrarVista(),
+				new MostrarUsuarioVista()
+				);
 	}
 
 }
