@@ -26,7 +26,7 @@ public class InsertarVista extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JTextField txtNickname;
 	private JTextField txtContrasena;
-	private JTextField txtGameLevel;
+	private JTextField txtNivel;
 	private JLabel lblNickname;
 	private JLabel lblContrasena;
 	private JLabel lblGameLevel;
@@ -78,13 +78,13 @@ public class InsertarVista extends JFrame {
         lblGameLevel.setHorizontalAlignment(SwingConstants.CENTER);
         getContentPane().add(lblGameLevel);
         
-        txtGameLevel = new JTextField();
-        txtGameLevel.setBackground(new Color(255, 255, 255));
-        txtGameLevel.setFont(new Font("Dialog", Font.PLAIN, 12));
-        txtGameLevel.setBounds(110, 194, 180, 30);
-        txtGameLevel.setHorizontalAlignment(SwingConstants.CENTER);
-        getContentPane().add(txtGameLevel);
-        txtGameLevel.setColumns(10);
+        txtNivel = new JTextField();
+        txtNivel.setBackground(new Color(255, 255, 255));
+        txtNivel.setFont(new Font("Dialog", Font.PLAIN, 12));
+        txtNivel.setBounds(110, 194, 180, 30);
+        txtNivel.setHorizontalAlignment(SwingConstants.CENTER);
+        getContentPane().add(txtNivel);
+        txtNivel.setColumns(10);
         
         btnCrear = new JButton("Crear");
         btnCrear.setFont(new Font("Dialog", Font.BOLD, 12));
@@ -102,7 +102,7 @@ public class InsertarVista extends JFrame {
 	}
 
 	public int getNivel() {
-		return Integer.parseInt(txtGameLevel.getText());
+		return Integer.parseInt(txtNivel.getText());
 	}
 
 	public void cerrar() {

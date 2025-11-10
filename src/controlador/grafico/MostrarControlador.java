@@ -53,6 +53,12 @@ public class MostrarControlador implements ActionListener {
         try {
             // Obtener texto de entrada
             String entrada = vista.getTfBuscarInput().trim();
+            
+            // Comprobar entrada
+            if (entrada == "" || entrada.isBlank()) {
+            	vista.mostrarMsj("Ingrese un nombre de usuario, nivel o puntaje");
+            	return;
+            }
 
             // Buscar coincidencias
             Usuario[] coincidencias = modelo.buscar(entrada);

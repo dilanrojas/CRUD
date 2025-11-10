@@ -59,6 +59,13 @@ public class ActualizarControlador implements ActionListener {
 	    try {
 	        if (source == vista.getBtnBuscar()) {
 	            String entrada = vista.getTfBuscarInput().trim();
+	            
+	            // Comprobar entrada
+	            if (entrada == "" || entrada.isBlank()) {
+	            	vista.mostrarMsj("Ingrese un nombre de usuario, nivel o puntaje");
+	            	return;
+	            }
+	            
 	            Usuario[] coincidencias = modelo.buscar(entrada);
 
 	            if (coincidencias == null || coincidencias.length == 0) {
@@ -71,9 +78,18 @@ public class ActualizarControlador implements ActionListener {
 	        else if (source == vistaUsuario.getBtnCambiar()) {
 	            String nuevaContrasena = vistaUsuario.getNuevaContrasena();
 	            int id = vistaUsuario.getID();
-	            Usuario usuario = modelo.buscar("" + id)[0];
+	            Usuario usuario = modelo.getElemento(id);
 
 	            if (usuario != null) {
+	        		// Comprobar contraseña válida
+	        		if (nuevaContrasena == "" || nuevaContrasena.isBlank()) {
+	        			vista.mostrarMsj("Ingrese una contraseña válida");
+	        			return;
+	        		} else if (nuevaContrasena.length() < 4) {
+	        			vista.mostrarMsj("La contraseña debe tener un mínimo de 4 caractéres");
+	        			return;
+	        		}
+	        		
 	                modelo.actualizar(usuario, nuevaContrasena);
 	                vistaUsuario.mostrarMsj("Contraseña actualizada correctamente.");
 	                vistaUsuario.cerrar();

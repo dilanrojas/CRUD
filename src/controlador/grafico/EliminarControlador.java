@@ -58,6 +58,12 @@ public class EliminarControlador implements ActionListener {
 	    try {
 	        if (source == vista.getBtnBuscar()) {
 	            String entrada = vista.getTfBuscarInput().trim();
+	            
+	            if (entrada == "" || entrada.isBlank()) {
+	            	vista.mostrarMsj("Ingrese un nombre de usuario");
+	            	return;
+	            }
+	            
 	            Usuario[] coincidencias = modelo.buscar(entrada);
 
 	            if (coincidencias == null || coincidencias.length == 0) {

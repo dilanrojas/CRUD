@@ -28,19 +28,22 @@ public class InsertarControlador implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-		// Realizar comprobaciones antes de agregar
+		// Comprobar nombre válido
 		if (vista.getNickname() == "" || vista.getNickname().isBlank()) {
 			vista.mostrarMsj("Ingrese un nombre válido");
 			return;
 		}
 		
+		// Comprobar contraseña válida
 		if (vista.getContrasena() == "" || vista.getContrasena().isBlank()) {
 			vista.mostrarMsj("Ingrese una contraseña válida");
 			return;
+		} else if (vista.getContrasena().length() < 4) {
+			vista.mostrarMsj("La contraseña debe tener un mínimo de 4 caractéres");
+			return;
 		}
 		
-		// Recuperar nivel como numero
+		// Verificar que nivel sea un número
 		int nivel = 0;
 
         try {

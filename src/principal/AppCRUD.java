@@ -16,12 +16,21 @@ import modelo.dataset.ListaUsuarios;
 import vista.grafico.*;
 
 public class AppCRUD {
+	// Componentes
+	private MenuVista menuVista;
+	private ListaUsuarios dataset;
 
 	public static void main(String[] args) {
-		MenuVista vistaMenu = new MenuVista();
-		ListaUsuarios dataset = new ListaUsuarios();
+		AppCRUD app = new AppCRUD();
+		app.iniciar();
+	}
+
+	// Iniciar controlador menu
+	public void iniciar() {
+		menuVista = new MenuVista();
+		dataset = new ListaUsuarios();
 		UsuarioDAO modelo = new UsuarioDAO(dataset);
-		MenuControlador controladorMenu = new MenuControlador(modelo, vistaMenu);
+		MenuControlador menuControlador = new MenuControlador(modelo, menuVista);
 	}
 
 }
