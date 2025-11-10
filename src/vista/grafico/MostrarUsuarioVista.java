@@ -33,7 +33,7 @@ public class MostrarUsuarioVista extends JFrame {
 		initComponents();
 		
         setTitle("Usuario | CRUD");
-        setSize(250, 370);
+        setSize(310, 440);
         setResizable(false);
         setLocationRelativeTo(null);
         setVisible(false);

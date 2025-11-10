@@ -37,7 +37,7 @@ public class ActualizarUsuarioVista extends JFrame {
 		initComponents();
 		
         setTitle("Usuario | CRUD");
-        setSize(300, 520);
+        setSize(300, 530);
         setResizable(false);
         setLocationRelativeTo(null);
         setVisible(false);

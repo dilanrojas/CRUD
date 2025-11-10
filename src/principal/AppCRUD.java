@@ -9,8 +9,6 @@ import controlador.grafico.MenuControlador;
  * @description description
  */
 
-import modelo.*;
-import modelo.dao.IUsuarioDAO;
 import modelo.dao.archivoJSON.*;
 import modelo.dataset.ListaUsuarios;
 import vista.grafico.*;

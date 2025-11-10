@@ -30,7 +30,7 @@ public class MenuVista extends JFrame {
 	public MenuVista() {
 		initComponents();
 		setTitle("MENÚ PRINCIPAL");
-		setSize(500, 320);
+		setSize(500, 400);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		setLocationRelativeTo(null);
