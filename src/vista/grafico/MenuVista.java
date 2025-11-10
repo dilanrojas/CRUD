@@ -82,6 +82,7 @@ public class MenuVista extends JFrame {
 		btnActualizar.addActionListener(escuchador);
 		btnEliminar.addActionListener(escuchador);
 		btnConfiguraciones.addActionListener(escuchador);
+		btnSalir.addActionListener(escuchador);
 	}
 
 	// Método mostrar mensaje

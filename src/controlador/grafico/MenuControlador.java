@@ -7,6 +7,7 @@ import modelo.dao.IUsuarioDAO;
 import vista.grafico.ActualizarUsuarioVista;
 import vista.grafico.ActualizarVista;
 import vista.grafico.ConfiguracionesVista;
+import vista.grafico.EliminarUsuarioVista;
 import vista.grafico.EliminarVista;
 import vista.grafico.InsertarVista;
 import vista.grafico.MenuVista;
@@ -28,6 +29,7 @@ public class MenuControlador implements ActionListener {
 	private ActualizarUsuarioVista vistaActualizarUsuario;
 	private ConfiguracionesVista vistaConfg;
 	private EliminarVista vistaEliminar;
+	private EliminarUsuarioVista vistaEliminarUsuario;
 	private InsertarVista vistaInsertar;
 	private MostrarVista vistaMostrar;
 	private MostrarUsuarioVista vistaUsuarioMostrar;
@@ -63,9 +65,10 @@ public class MenuControlador implements ActionListener {
             vistaActualizarUsuario = new ActualizarUsuarioVista();
             controladorAct = new ActualizarControlador(modelo, vistaActualizar, vistaActualizarUsuario);
 
-        /*} else if (fuente == vistaMenu.getBtnEliminar()) {
+        } else if (fuente == vistaMenu.getBtnEliminar()) {
             vistaEliminar = new EliminarVista();
-            controladorEl = new EliminarControlador(vistaEliminar, modelo);*/
+            vistaEliminarUsuario = new EliminarUsuarioVista();
+            controladorEl = new EliminarControlador(modelo, vistaEliminar, vistaEliminarUsuario);
 
         /* PENDIENTE --> } else if (fuente == vistaMenu.getjM_Config()) {
             vistaConfg = new ConfiguracionesVista();

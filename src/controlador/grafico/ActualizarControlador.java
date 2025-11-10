@@ -24,6 +24,9 @@ public class ActualizarControlador implements ActionListener {
 	private ActualizarUsuarioVista vistaUsuario;
 	
 	// Constructor
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public ActualizarControlador(
 		IUsuarioDAO modelo,
 		ActualizarVista vista,
@@ -67,13 +70,14 @@ public class ActualizarControlador implements ActionListener {
 
 	        else if (source == vistaUsuario.getBtnCambiar()) {
 	            String nuevaContrasena = vistaUsuario.getNuevaContrasena();
-	            String id = vistaUsuario.getID();
-	            Usuario usuario = modelo.buscar(id)[0];
+	            int id = vistaUsuario.getID();
+	            Usuario usuario = modelo.buscar("" + id)[0];
 
 	            if (usuario != null) {
 	                modelo.actualizar(usuario, nuevaContrasena);
 	                vistaUsuario.mostrarMsj("Contraseña actualizada correctamente.");
 	                vistaUsuario.cerrar();
+	                vista.cerrar();
 	            } else {
 	                vistaUsuario.mostrarMsj("No se encontró el usuario.");
 	            }

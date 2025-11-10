@@ -16,7 +16,7 @@ import javax.swing.JTextField;
  * @description description
  */
 
-public class ActualizarUsuarioVista extends JFrame {
+public class EliminarUsuarioVista extends JFrame {
 	// Componentes gráficos
 	private static final long serialVersionUID = 1L;
 	private JTextField tfNombre;
@@ -24,20 +24,20 @@ public class ActualizarUsuarioVista extends JFrame {
 	private JTextField tfPuntaje;
 	private JTextField tfID;
 	private JTextField tfNuevaContrasena;
-	private JButton btnCambiar;
+	private JButton btnEliminar;
 	private JButton btnCancelar;
 
 	// Main (Pruebas)
 	public static void main(String[] args) {
-		ActualizarUsuarioVista vista = new ActualizarUsuarioVista();
+		EliminarUsuarioVista vista = new EliminarUsuarioVista();
 	}
 
 	// Constructor
-	public ActualizarUsuarioVista() {
+	public EliminarUsuarioVista() {
 		initComponents();
 		
         setTitle("Usuario | CRUD");
-        setSize(300, 520);
+        setSize(300, 500);
         setResizable(false);
         setLocationRelativeTo(null);
         setVisible(false);
@@ -87,36 +87,26 @@ public class ActualizarUsuarioVista extends JFrame {
         tfID.setBounds(36, 302, 186, 21);
         getContentPane().add(tfID);
         
-        tfNuevaContrasena = new JTextField();
-        tfNuevaContrasena.setText("Nueva contraseña");
-        tfNuevaContrasena.setBounds(36, 358, 186, 34);
-        getContentPane().add(tfNuevaContrasena);
-        tfNuevaContrasena.setColumns(10);
-        
-        btnCambiar = new JButton("Cambiar");
-        btnCambiar.setBounds(36, 404, 186, 27);
-        getContentPane().add(btnCambiar);
+        btnEliminar = new JButton("Eliminar");
+        btnEliminar.setBounds(36, 354, 186, 27);
+        getContentPane().add(btnEliminar);
         
         btnCancelar = new JButton("Cancelar");
-        btnCancelar.setBounds(36, 443, 186, 27);
+        btnCancelar.setBounds(36, 393, 186, 27);
         getContentPane().add(btnCancelar);
 	}
 	
 	// Getters
-	public JButton getBtnCambiar() {
-		return btnCambiar;
+	public JButton getBtnEliminar() {
+		return btnEliminar;
 	}
 	
 	public JButton getBtnCancelar() {
 		return btnCancelar;
 	}
 	
-	public String getNuevaContrasena() {
-		return tfNuevaContrasena.getText();
-	}
-	
-	public int getID() {
-		return Integer.parseInt(tfID.getText());
+	public String getID() {
+		return tfID.getText();
 	}
 
 	// Setters
@@ -143,7 +133,7 @@ public class ActualizarUsuarioVista extends JFrame {
 	
 	// Escuchadores
 	public void setEscuchadores(ActionListener escuchador) {
-		this.btnCambiar.addActionListener(escuchador);
+		this.btnEliminar.addActionListener(escuchador);
 		this.btnCancelar.addActionListener(escuchador);
 	}
 

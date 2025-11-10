@@ -68,12 +68,18 @@ public class UsuarioDAO implements IUsuarioDAO {
 	@Override
 	public boolean eliminar(int id) {
 		dataset.eliminar(id);
+		guardarDataset();
 		return false;
 	}
 
 	@Override
 	public Usuario[] buscar(String entrada) {
 		return dataset.buscar(entrada);
+	}
+
+	@Override
+	public Usuario getElemento(int id) {
+		return dataset.getElemento(id);
 	}
 
 }

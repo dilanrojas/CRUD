@@ -112,7 +112,7 @@ public class ListaUsuarios {
   // Eliminar
   public boolean eliminar(int index) {
 	  if (index < 0 || index >= size) return false;
-	  corrimiento(index);
+	  lista[index] = null;
 	  return true;
   }
   

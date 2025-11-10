@@ -25,6 +25,9 @@ public interface IUsuarioDAO {
 
   // Elimina un usuario de la lista
   public abstract boolean eliminar(int id);
+  
+  // Obtener un elemento por id
+  public abstract Usuario getElemento(int id);
 
   // Busca un usuario en la lista
   // por nivel, id o nombre, devolviendo un array
