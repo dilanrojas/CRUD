@@ -7,6 +7,10 @@ package modelo;
  * @description description
  */
 
+
+// TODO --> Agregar atributo nickname y actualizar las clases
+// que lo requieren. Además, agregar valicaciones (No espacios, ñ, tíldes ni símbolos)
+
 public class Usuario {
 	// Atributos
 	private String nombre;
@@ -14,7 +18,7 @@ public class Usuario {
 	private int nivel;
 	private int puntaje;
 	private int ID;
-	
+
 	// Constructor
 	public Usuario(
 		String nombre,

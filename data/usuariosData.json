@@ -1,11 +1,11 @@
 {"usuarios": [
-	{
-	    "puntaje": 0,
-	    "contrasena": "NuevaContrasena",
-	    "ID": 1,
-	    "nombre": "Dilan",
-	    "nivel": 3
-	},
+    {
+        "puntaje": 0,
+        "contrasena": "1234",
+        "ID": 1,
+        "nombre": "Dilan",
+        "nivel": 3
+    },
     {
         "puntaje": 0,
         "contrasena": "Xuz{oo7",

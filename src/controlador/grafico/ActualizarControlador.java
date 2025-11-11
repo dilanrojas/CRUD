@@ -77,23 +77,32 @@ public class ActualizarControlador implements ActionListener {
 
 	        else if (source == vistaUsuario.getBtnCambiar()) {
 	            String nuevaContrasena = vistaUsuario.getNuevaContrasena();
-	            int id = vistaUsuario.getID();
+              String nuevaContrasenaConfirmar = vistaUsuario.getNuevaContrasenaConfirmar();
+	            int id = vistaUsuario.getID() - 1;
 	            Usuario usuario = modelo.getElemento(id);
 
 	            if (usuario != null) {
+
 	        		// Comprobar contraseña válida
-	        		if (nuevaContrasena == "" || nuevaContrasena.isBlank()) {
+	        		if (!nuevaContrasena.equals(nuevaContrasenaConfirmar)) {
+	        			vista.mostrarMsj("Las contraseñas no coinciden");
+	        			return;
+	        		} else if (nuevaContrasena == "" || nuevaContrasena.isBlank()) {
 	        			vista.mostrarMsj("Ingrese una contraseña válida");
 	        			return;
-	        		} else if (nuevaContrasena.length() < 4) {
+              }else if (nuevaContrasena.length() < 4) {
 	        			vista.mostrarMsj("La contraseña debe tener un mínimo de 4 caractéres");
 	        			return;
-	        		}
-	        		
-	                modelo.actualizar(usuario, nuevaContrasena);
-	                vistaUsuario.mostrarMsj("Contraseña actualizada correctamente.");
-	                vistaUsuario.cerrar();
-	                vista.cerrar();
+	        		} else if (nuevaContrasena.contains(" ")) {
+                vista.mostrarMsj("La contraseña no debe tener espacios");
+                return;
+              }
+
+	            modelo.actualizar(usuario, nuevaContrasena);
+	            vistaUsuario.mostrarMsj("Contraseña actualizada correctamente.");
+	            vistaUsuario.cerrar();
+	            vista.cerrar();
+
 	            } else {
 	                vistaUsuario.mostrarMsj("No se encontró el usuario.");
 	            }
