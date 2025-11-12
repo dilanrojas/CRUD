@@ -7,14 +7,12 @@ import java.awt.event.MouseEvent;
 
 import modelo.Usuario;
 import modelo.dao.IUsuarioDAO;
-import vista.grafico.ActualizarUsuarioVista;
-import vista.grafico.ActualizarVista;
 import vista.grafico.EliminarUsuarioVista;
 import vista.grafico.EliminarVista;
 
 /**
- * @author Dilan Rojas
- * @date Nov 5, 2025
+ * @author Sebastian Castro Ulate
+ * @date Nov 7, 2025
  * @version 1.0
  * @description description
  */
@@ -74,7 +72,7 @@ public class EliminarControlador implements ActionListener {
 	        }
 
 	        else if (source == vistaUsuario.getBtnEliminar()) {
-	        	int usuarioID = Integer.parseInt(vistaUsuario.getID()) - 1;
+	         	  int usuarioID = Integer.parseInt(vistaUsuario.getID()) - 1;
 	            Usuario usuario = modelo.getElemento(usuarioID);
 	            
 	            if (usuario != null) {

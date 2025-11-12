@@ -37,7 +37,7 @@ public class ActualizarVista extends JFrame {
 	// Constructor
 	public ActualizarVista() {
 		initComponents();
-        setTitle("Mostrar | CRUD");
+        setTitle("Actualizar | CRUD");
         setSize(750, 400);
         setResizable(false);
         setLocationRelativeTo(null);

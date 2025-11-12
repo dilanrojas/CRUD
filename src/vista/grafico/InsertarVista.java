@@ -11,8 +11,6 @@ import javax.swing.SwingConstants;
 
 import javax.swing.JButton;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 
 /**
@@ -24,9 +22,11 @@ import java.awt.Font;
 
 public class InsertarVista extends JFrame {
 	private static final long serialVersionUID = 1L;
-	private JTextField txtNickname;
-	private JTextField txtContrasena;
-	private JTextField txtNivel;
+  private JTextField tfNombre;
+	private JTextField tfNickname;
+	private JTextField tfContrasena;
+	private JTextField tfNivel;
+  private JLabel lblNombre;
 	private JLabel lblNickname;
 	private JLabel lblContrasena;
 	private JLabel lblGameLevel;
@@ -35,12 +35,12 @@ public class InsertarVista extends JFrame {
 	public static void main(String[] args) {
 		InsertarVista vista = new InsertarVista();
 	}
+
 	public InsertarVista() {
 		initComponents();
-		// Cerrar app
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("CRUD | Insertar");
-		setSize(420, 400);
+		setTitle("Insertar | CRUD");
+		setSize(400, 470);
 		setResizable(true);
 		setLocationRelativeTo(null);
 		setVisible(true);
@@ -48,61 +48,76 @@ public class InsertarVista extends JFrame {
 	
 	
 	public void initComponents() {
-        getContentPane().setLayout(null);
-        
-        lblNickname = new JLabel("Ingrese Nickname");
-        lblNickname.setBounds(145, 30, 110, 20);
-        lblNickname.setHorizontalAlignment(SwingConstants.CENTER);
-        getContentPane().add(lblNickname);
-        
-        txtNickname = new JTextField();
-        txtNickname.setBackground(new Color(255, 255, 255));
-        txtNickname.setBounds(110, 60, 180, 30);
-        txtNickname.setHorizontalAlignment(SwingConstants.CENTER);
-        getContentPane().add(txtNickname);
-        
-        lblContrasena = new JLabel("Contraseña");
-        lblContrasena.setBounds(145, 102, 110, 20);
-        lblContrasena.setHorizontalAlignment(SwingConstants.CENTER);
-        getContentPane().add(lblContrasena);
-        
-        txtContrasena = new JTextField();
-        txtContrasena.setBackground(new Color(255, 255, 255));
-        txtContrasena.setBounds(110, 127, 180, 30);
-        txtContrasena.setHorizontalAlignment(SwingConstants.CENTER);
-        getContentPane().add(txtContrasena);
-        txtContrasena.setColumns(10);
-        
-        lblGameLevel = new JLabel("Nivel de juego");
-        lblGameLevel.setBounds(145, 169, 110, 20);
-        lblGameLevel.setHorizontalAlignment(SwingConstants.CENTER);
-        getContentPane().add(lblGameLevel);
-        
-        txtNivel = new JTextField();
-        txtNivel.setBackground(new Color(255, 255, 255));
-        txtNivel.setFont(new Font("Dialog", Font.PLAIN, 12));
-        txtNivel.setBounds(110, 194, 180, 30);
-        txtNivel.setHorizontalAlignment(SwingConstants.CENTER);
-        getContentPane().add(txtNivel);
-        txtNivel.setColumns(10);
-        
-        btnCrear = new JButton("Crear");
-        btnCrear.setFont(new Font("Dialog", Font.BOLD, 12));
-        btnCrear.setBackground(new Color(255, 255, 255));
-        btnCrear.setBounds(110, 239, 180, 30);
-        getContentPane().add(btnCrear);
-    }
+    getContentPane().setLayout(null);
+
+    // x, y, width, height
+    lblNombre = new JLabel("Nombre");
+    lblNombre.setBounds(110, 30, 110, 20);
+    lblNombre.setHorizontalAlignment(SwingConstants.LEFT);
+    getContentPane().add(lblNombre);
+
+    tfNombre = new JTextField();
+    tfNombre.setBounds(110, 60, 180, 30);
+    tfNombre.setHorizontalAlignment(SwingConstants.LEFT);
+    getContentPane().add(tfNombre);
+
+    lblNickname = new JLabel("Nickname");
+    lblNickname.setBounds(110, 110, 110, 20);
+    lblNickname.setHorizontalAlignment(SwingConstants.LEFT);
+    getContentPane().add(lblNickname);
+
+    tfNickname = new JTextField();
+    tfNickname.setBackground(new Color(255, 255, 255));
+    tfNickname.setBounds(110, 140, 180, 30);
+    tfNickname.setHorizontalAlignment(SwingConstants.LEFT);
+    getContentPane().add(tfNickname);
+
+    lblContrasena = new JLabel("Contraseña");
+    lblContrasena.setBounds(110, 190, 110, 20);
+    lblContrasena.setHorizontalAlignment(SwingConstants.LEFT);
+    getContentPane().add(lblContrasena);
+
+    tfContrasena = new JTextField();
+    tfContrasena.setBackground(new Color(255, 255, 255));
+    tfContrasena.setBounds(110, 220, 180, 30);
+    tfContrasena.setHorizontalAlignment(SwingConstants.LEFT);
+    getContentPane().add(tfContrasena);
+    tfContrasena.setColumns(10);
+
+    lblGameLevel = new JLabel("Nivel de juego");
+    lblGameLevel.setBounds(110, 270, 110, 20);
+    lblGameLevel.setHorizontalAlignment(SwingConstants.LEFT);
+    getContentPane().add(lblGameLevel);
+
+    tfNivel = new JTextField();
+    tfNivel.setBackground(new Color(255, 255, 255));
+    tfNivel.setFont(new Font("Dialog", Font.PLAIN, 12));
+    tfNivel.setBounds(110, 300, 180, 30);
+    tfNivel.setHorizontalAlignment(SwingConstants.CENTER);
+    getContentPane().add(tfNivel);
+    tfNivel.setColumns(10);
+
+    btnCrear = new JButton("Crear");
+    btnCrear.setFont(new Font("Dialog", Font.BOLD, 12));
+    btnCrear.setBackground(new Color(255, 255, 255));
+    btnCrear.setBounds(110, 360, 180, 30);
+    getContentPane().add(btnCrear);
+  }
+
+  public String getNombre() {
+    return tfNombre.getText();
+  }
 
 	public String getNickname() {
-		return txtNickname.getText();
+		return tfNickname.getText();
 	}
 	
 	public String getContrasena() {
-		return txtContrasena.getText();
+		return tfContrasena.getText();
 	}
 
 	public int getNivel() {
-		return Integer.parseInt(txtNivel.getText());
+		return Integer.parseInt(tfNivel.getText());
 	}
 
 	public void cerrar() {

@@ -29,7 +29,7 @@ public class MenuVista extends JFrame {
 	// Constructor
 	public MenuVista() {
 		initComponents();
-		setTitle("MENÚ PRINCIPAL");
+		setTitle("Menú | CRUD");
 		setSize(500, 400);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);

@@ -15,8 +15,8 @@ import javax.swing.ListSelectionModel;
 import modelo.Usuario;
 
 /**
- * @author Dilan Rojas
- * @date Nov 5, 2025
+ * @author Sebastian Castro Ulate
+ * @date Nov 7, 2025
  * @version 1.0
  * @description description
  */
@@ -37,7 +37,7 @@ public class EliminarVista extends JFrame {
 	// Constructor
 	public EliminarVista() {
 		initComponents();
-        setTitle("Mostrar | CRUD");
+        setTitle("Eliminar | CRUD");
         setSize(750, 400);
         setResizable(false);
         setLocationRelativeTo(null);

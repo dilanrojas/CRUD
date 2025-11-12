@@ -58,9 +58,9 @@ public class ListaUsuarios {
       for (int i = 0; i < lista.length; i++) {
           nuevaLista[i] = lista[i];
       }
-      lista = nuevaLista;
+      this.lista = nuevaLista;
   }
-  
+
   // Crecer (sobrecarga)
   private Usuario[] crecer(Usuario[] arreglo) {
       int nuevoTamano = arreglo.length * 2;
@@ -70,7 +70,7 @@ public class ListaUsuarios {
       }
       return nuevaLista;
   }
-  
+
   // Imprimir
   public String imprimir() {
       if (size == 0 || lista == null) return null;
@@ -80,12 +80,12 @@ public class ListaUsuarios {
       }
       return usuarios;
   }
-  
+
   // Obtener size
   public int getSize() {
       return size;
   }
-  
+
   // Obtener ultimoID
   public int getUltimoID() {
 	  return ultimoID;
@@ -101,7 +101,7 @@ public class ListaUsuarios {
 	for (int i = 0; i < size; i++) lista[i] = null;
 	size = 0;
   }
-  
+
   // Corrimiento
   public void corrimiento(int index) {
 	  for (int i = index; i < size - 1; i++) {
@@ -110,21 +110,21 @@ public class ListaUsuarios {
 	  lista[size - 1] = null;
 	  size--;
   }
-  
+
   // Eliminar
   public boolean eliminar(int index) {
 	  if (index < 0 || index >= size) return false;
 	  lista[index] = null;
 	  return true;
   }
-  
+
   // === BÚSQUEDAS ===
-  
+
   // Buscar por nombre, ID y nivel
   public Usuario[] buscar(String entrada) {
 	  Usuario[] coincidencias = new Usuario[10];
 	  int cantidadCoincidencias = 0;
-	  
+
 	  // Comprobar si la entrada es un numero (ID o Nivel) o no.
 	  try {
 		  // Si es un numero, se busca por ID y Nivel.
@@ -136,11 +136,11 @@ public class ListaUsuarios {
 				  coincidencias[cantidadCoincidencias++] = usuario;
 			  }
 		  }
-		  
+
 	  } catch (NumberFormatException e) {
 		  // No es un número, se busca solo por nombre
 		  String entradaNormalizada = entrada.toLowerCase();
-		  
+
 		  for (Usuario usuario: lista) {
 			  if (usuario != null && usuario.getNombre().toLowerCase().contains(entradaNormalizada)) {
 				  if (coincidencias.length >= cantidadCoincidencias) coincidencias = crecer(coincidencias);
@@ -148,13 +148,13 @@ public class ListaUsuarios {
 			  }
 		  }
 	  }
-	  
-	    // Devolver arreglo sin espacios vacíos
-	    Usuario[] resultadosFinales = new Usuario[cantidadCoincidencias];
-	    for (int i = 0; i < cantidadCoincidencias; i++) {
-	        resultadosFinales[i] = coincidencias[i];
-	    }
 
-	    return resultadosFinales;
+	  // Devolver arreglo sin espacios vacíos
+	  Usuario[] resultadosFinales = new Usuario[cantidadCoincidencias];
+	  for (int i = 0; i < cantidadCoincidencias; i++) {
+	      resultadosFinales[i] = coincidencias[i];
+	  }
+
+	  return resultadosFinales;
   }
 }

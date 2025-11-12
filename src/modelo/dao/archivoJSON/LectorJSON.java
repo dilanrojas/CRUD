@@ -12,11 +12,11 @@ import modelo.Usuario;
 import modelo.dataset.ListaUsuarios;
 
 /**
- 
-@author Sebastian Castro Ulate
-@date Nov 7, 2025
-@version 1.0
-@description description*/
+ * @author Sebastian Castro Ulate
+ * @date Nov 7, 2025
+ * @version 1.0
+ * @description description
+ */
 
 public class LectorJSON {
     private ListaUsuarios dataset;
@@ -47,6 +47,7 @@ public class LectorJSON {
                 JSONObject elemento = jsonArray.getJSONObject(i);
                 Usuario usuario = new Usuario(
                         elemento.getString("nombre"),
+                        elemento.getString("nickname"),
                         elemento.getString("contrasena"),
                         elemento.getInt("nivel"),
                         elemento.getInt("puntaje"),

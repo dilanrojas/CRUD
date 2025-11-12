@@ -37,36 +37,39 @@ public class MostrarVista extends JFrame {
 	// Constructor
 	public MostrarVista() {
 		initComponents();
-        setTitle("Mostrar | CRUD");
-        setSize(750, 400);
-        setResizable(false);
-        setLocationRelativeTo(null);
-        setVisible(true);
+    setTitle("Mostrar | CRUD");
+    setSize(750, 450);
+    setResizable(false);
+    setLocationRelativeTo(null);
+    setVisible(true);
 	}
 
 	// Inicializar componentes
 	public void initComponents() {
 		getContentPane().setLayout(null);
 		
-        tfBuscarInput = new JTextField();
-        tfBuscarInput.setToolTipText("");
-        tfBuscarInput.setBounds(111, 52, 409, 38);
-        getContentPane().add(tfBuscarInput);
-        tfBuscarInput.setColumns(10);
-        
-        JLabel lblNewLabel = new JLabel("Nombre | Nivel | Puntaje");
-        lblNewLabel.setBounds(285, 23, 154, 17);
-        getContentPane().add(lblNewLabel);
-        
-        btnBuscar = new JButton("Buscar");
-        btnBuscar.setBounds(532, 52, 85, 37);
-        getContentPane().add(btnBuscar);
-        
-        modeloUsuarios = new DefaultListModel<Usuario>();
-        listaUsuarios = new JList<Usuario>(modeloUsuarios);
-        listaUsuarios.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        listaUsuarios.setBounds(111, 125, 506, 206);
-        getContentPane().add(listaUsuarios);
+    tfBuscarInput = new JTextField();
+    tfBuscarInput.setToolTipText("");
+    tfBuscarInput.setBounds(111, 52, 409, 38);
+    getContentPane().add(tfBuscarInput);
+    tfBuscarInput.setColumns(10);
+
+    JLabel lblNewLabel = new JLabel("Buscar por:");
+    lblNewLabel.setBounds(285, 23, 154, 17);
+    getContentPane().add(lblNewLabel);
+
+    // TODO --> Añadir radio buttons para buscar por nombre, nivel o puntaje
+    // También añadir en las demás vistas de búsqueda (Actualizar y Eliminar...)
+
+    btnBuscar = new JButton("Buscar");
+    btnBuscar.setBounds(532, 52, 85, 37);
+    getContentPane().add(btnBuscar);
+
+    modeloUsuarios = new DefaultListModel<Usuario>();
+    listaUsuarios = new JList<Usuario>(modeloUsuarios);
+    listaUsuarios.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    listaUsuarios.setBounds(111, 125, 506, 206);
+    getContentPane().add(listaUsuarios);
 	}
 	
 	// Setters & Getters

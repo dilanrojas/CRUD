@@ -14,6 +14,7 @@ package modelo;
 public class Usuario {
 	// Atributos
 	private String nombre;
+  private String nickname;
 	private String contrasena;
 	private int nivel;
 	private int puntaje;
@@ -22,12 +23,14 @@ public class Usuario {
 	// Constructor
 	public Usuario(
 		String nombre,
+    String nickname,
 		String contrasena,
 		int nivel,
 		int puntaje,
 		int id
 	) {
 		this.nombre = nombre;
+    this.nickname = nickname;
 		this.contrasena = contrasena;
 		this.nivel = nivel;
 		this.puntaje = puntaje;
@@ -38,6 +41,10 @@ public class Usuario {
 	public String getNombre() {
 		return nombre;
 	}
+
+  public String getNickname() {
+    return nickname;
+  }
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;

@@ -18,15 +18,17 @@ import modelo.Usuario;
 import modelo.dataset.ListaUsuarios;
 
 public class EscritorJSON {
-
+  // Componentes
 	private ListaUsuarios dataset;
 	private final String fileName;
 
+  // Constructor
 	public EscritorJSON(ListaUsuarios dataset, String fileName) {
 		this.dataset = dataset;
 		this.fileName = fileName;
 	}
 
+  // Escibir en .json
 	public void writeAll() throws IOException {
 		File file = new File(fileName);
 
@@ -41,6 +43,7 @@ public class EscritorJSON {
 			if (usuario != null) {
 				 JSONObject elemento_json = new JSONObject();
 				 	elemento_json.put("nombre", usuario.getNombre());
+          elemento_json.put("nickname", usuario.getNickname());
 				 	elemento_json.put("contrasena", usuario.getContrasena());
 				 	elemento_json.put("nivel", usuario.getNivel());
 				 	elemento_json.put("puntaje", usuario.getPuntaje());

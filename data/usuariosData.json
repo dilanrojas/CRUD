@@ -1,6 +1,7 @@
 {"usuarios": [
     {
         "puntaje": 0,
+        "nickname": "dilanrojas",
         "contrasena": "1234",
         "ID": 1,
         "nombre": "Dilan",
@@ -8,6 +9,7 @@
     },
     {
         "puntaje": 0,
+        "nickname": "sebas",
         "contrasena": "Xuz{oo7",
         "ID": 2,
         "nombre": "Sebastián",
@@ -15,16 +17,10 @@
     },
     {
         "puntaje": 0,
-        "contrasena": "Hah:z9u",
+        "nickname": "ana10",
+        "contrasena": "ag120",
         "ID": 3,
         "nombre": "Ana",
         "nivel": 3
-    },
-    {
-        "puntaje": 0,
-        "contrasena": "woh1eW{",
-        "ID": 4,
-        "nombre": "Anabelle",
-        "nivel": 0
     }
 ]}

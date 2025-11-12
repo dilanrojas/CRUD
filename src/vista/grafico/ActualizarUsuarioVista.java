@@ -1,6 +1,5 @@
 package vista.grafico;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
@@ -37,7 +36,7 @@ public class ActualizarUsuarioVista extends JFrame {
 	public ActualizarUsuarioVista() {
 		initComponents();
 		
-    setTitle("Usuario | CRUD");
+    setTitle("Actualizar | CRUD");
     setSize(300, 600);
     setResizable(false);
     setLocationRelativeTo(null);
