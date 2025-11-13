@@ -26,6 +26,7 @@ public class EliminarVista extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JTextField tfBuscarInput;
 	private JButton btnBuscar;
+	private JButton btnVolver;
 	private JList<Usuario> listaUsuarios;
 	private DefaultListModel<Usuario> modeloUsuarios;
 
@@ -67,6 +68,11 @@ public class EliminarVista extends JFrame {
         listaUsuarios.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listaUsuarios.setBounds(111, 125, 506, 206);
         getContentPane().add(listaUsuarios);
+
+		btnVolver = new JButton("Volver");
+        btnVolver.setBorder(new LineBorder(new Color(153, 204, 255), 2, true));
+        btnVolver.setBounds(12, 328, 85, 27);
+        getContentPane().add(btnVolver);
 	}
 	
 	// Setters & Getters
@@ -76,6 +82,9 @@ public class EliminarVista extends JFrame {
 	
 	public JButton getBtnBuscar() {
 		return btnBuscar;
+	}
+	public JButton getBtnVolver() {
+		return btnVoler;
 	}
 
 	public void setListaUsuarios(Usuario[] lista) {
@@ -93,7 +102,7 @@ public class EliminarVista extends JFrame {
 	// Configurar escuchadores
 	public void setEscuchadores(ActionListener escuchador) {
 		btnBuscar.addActionListener(escuchador);
-		
+		btnVolver.addActionListener(escuchador);
 	}
 	
 	public void setEscuchadorLista(MouseListener escuchador) {
