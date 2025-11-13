@@ -12,6 +12,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.border.LineBorder;
 
 /**
  * @author Sebastian Castro Ulate
@@ -31,6 +32,7 @@ public class InsertarVista extends JFrame {
 	private JLabel lblContrasena;
 	private JLabel lblGameLevel;
 	private JButton btnCrear;
+	private JButton btnCancelar;
 	
 	public static void main(String[] args) {
 		InsertarVista vista = new InsertarVista();
@@ -62,46 +64,53 @@ public class InsertarVista extends JFrame {
     getContentPane().add(tfNombre);
 
     lblNickname = new JLabel("Nickname");
-    lblNickname.setBounds(110, 110, 110, 20);
+    lblNickname.setBounds(110, 100, 110, 20);
     lblNickname.setHorizontalAlignment(SwingConstants.LEFT);
     getContentPane().add(lblNickname);
 
     tfNickname = new JTextField();
     tfNickname.setBackground(new Color(255, 255, 255));
-    tfNickname.setBounds(110, 140, 180, 30);
+    tfNickname.setBounds(110, 130, 180, 30);
     tfNickname.setHorizontalAlignment(SwingConstants.LEFT);
     getContentPane().add(tfNickname);
 
     lblContrasena = new JLabel("Contraseña");
-    lblContrasena.setBounds(110, 190, 110, 20);
+    lblContrasena.setBounds(110, 170, 110, 20);
     lblContrasena.setHorizontalAlignment(SwingConstants.LEFT);
     getContentPane().add(lblContrasena);
 
     tfContrasena = new JTextField();
     tfContrasena.setBackground(new Color(255, 255, 255));
-    tfContrasena.setBounds(110, 220, 180, 30);
+    tfContrasena.setBounds(110, 200, 180, 30);
     tfContrasena.setHorizontalAlignment(SwingConstants.LEFT);
     getContentPane().add(tfContrasena);
     tfContrasena.setColumns(10);
 
     lblGameLevel = new JLabel("Nivel de juego");
-    lblGameLevel.setBounds(110, 270, 110, 20);
+    lblGameLevel.setBounds(110, 240, 110, 20);
     lblGameLevel.setHorizontalAlignment(SwingConstants.LEFT);
     getContentPane().add(lblGameLevel);
 
     tfNivel = new JTextField();
     tfNivel.setBackground(new Color(255, 255, 255));
     tfNivel.setFont(new Font("Dialog", Font.PLAIN, 12));
-    tfNivel.setBounds(110, 300, 180, 30);
+    tfNivel.setBounds(110, 270, 180, 30);
     tfNivel.setHorizontalAlignment(SwingConstants.CENTER);
     getContentPane().add(tfNivel);
     tfNivel.setColumns(10);
 
     btnCrear = new JButton("Crear");
+    btnCrear.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
     btnCrear.setFont(new Font("Dialog", Font.BOLD, 12));
-    btnCrear.setBackground(new Color(255, 255, 255));
-    btnCrear.setBounds(110, 360, 180, 30);
+    btnCrear.setBackground(Color.LIGHT_GRAY);
+    btnCrear.setBounds(110, 320, 180, 30);
     getContentPane().add(btnCrear);
+    
+    btnCancelar = new JButton("Cancelar");
+    btnCancelar.setBackground(Color.LIGHT_GRAY);
+    btnCancelar.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+    btnCancelar.setBounds(110, 362, 180, 30);
+    getContentPane().add(btnCancelar);
   }
 
   public String getNombre() {
@@ -119,6 +128,10 @@ public class InsertarVista extends JFrame {
 	public int getNivel() {
 		return Integer.parseInt(tfNivel.getText());
 	}
+	
+	public JButton getBtnCancelar() {
+		return btnCancelar;
+	}
 
 	public void cerrar() {
 		dispose();
@@ -130,5 +143,6 @@ public class InsertarVista extends JFrame {
 	
 	public void setEscuchadores(ActionListener escuchador) {
 		btnCrear.addActionListener(escuchador);
+		btnCancelar.addActionListener(escuchador);
 	}
 }
