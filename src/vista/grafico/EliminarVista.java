@@ -1,5 +1,6 @@
 package vista.grafico;
 
+import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 
@@ -11,6 +12,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
+import javax.swing.border.LineBorder;
 
 import modelo.Usuario;
 
