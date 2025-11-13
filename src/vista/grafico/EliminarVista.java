@@ -84,7 +84,7 @@ public class EliminarVista extends JFrame {
 		return btnBuscar;
 	}
 	public JButton getBtnVolver() {
-		return btnVoler;
+		return btnVolver;
 	}
 
 	public void setListaUsuarios(Usuario[] lista) {
