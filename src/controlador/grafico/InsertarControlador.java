@@ -27,42 +27,46 @@ public class InsertarControlador implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-    // Comprobar datos
-    if (!comprobarDatos()) return;
-		
+		if (e.getSource() == vista.getBtnCancelar()) {
+			vista.cerrar();
+			return;
+		}
+		// Comprobar datos
+		if (!comprobarDatos()) return;
+
 		// Verificar que nivel sea un número
 		int nivel = comprobarNivel();
-    if (nivel == -1) return;
-		
+		if (nivel == -1) return;
+
 		Usuario usuario = null;
 		try {
 			usuario = new Usuario(vista.getNombre(), vista.getNickname(), vista.getContrasena(), nivel, 0, 0);
 			modelo.agregar(usuario);
 			vista.mostrarMsj("Usuario agregado corractamente");
-      vista.cerrar();
-      return;
+			vista.cerrar();
+			return;
 		} catch (Exception ex) {
 			vista.mostrarMsj("No es posible agregar el usuario");
-      vista.cerrar();
-      return;
+			vista.cerrar();
+			return;
 		}
 	}
 
-  private boolean comprobarDatos() {
+	private boolean comprobarDatos() {
 		// Comprobar nombre
 		if (vista.getNombre().equals("") || vista.getNombre().isBlank()) {
 			vista.mostrarMsj("Ingrese un nombre válido");
 			return false;
 		}
 
-    // Comprobar Nickname
-    if (vista.getNickname().equals("") || vista.getNickname().isBlank()) {
-      vista.mostrarMsj("Ingrese un nickname válido");
-      return false;
-    } else if (vista.getNickname().contains(" ")) {
-      vista.mostrarMsj("El nickname no debe contener espacios");
-      return false;
-    }
+		// Comprobar Nickname
+		if (vista.getNickname().equals("") || vista.getNickname().isBlank()) {
+			vista.mostrarMsj("Ingrese un nickname válido");
+			return false;
+		} else if (vista.getNickname().contains(" ")) {
+			vista.mostrarMsj("El nickname no debe contener espacios");
+			return false;
+		}
 
 		// Comprobar contraseña
 		if (vista.getContrasena().equals("") || vista.getContrasena().isBlank()) {
@@ -73,22 +77,22 @@ public class InsertarControlador implements ActionListener {
 			return false;
 		}
 
-    return true;
-  }
+		return true;
+	}
 
-  private int comprobarNivel() {
-    int numero = 0;
-    try {
-        numero = vista.getNivel();
-        if (numero < 0 || numero > 10) {
-        	vista.mostrarMsj("Ingrese un nivel válido (entre 0 y 10)");
-        	return -1;
-        }
-    } catch (NumberFormatException e1) {
-    	vista.mostrarMsj("El nivel debe ser un numero");
-    	return -1;
-    }
+	private int comprobarNivel() {
+		int numero = 0;
+		try {
+			numero = vista.getNivel();
+			if (numero < 0 || numero > 10) {
+				vista.mostrarMsj("Ingrese un nivel válido (entre 0 y 10)");
+				return -1;
+			}
+		} catch (NumberFormatException e1) {
+			vista.mostrarMsj("El nivel debe ser un numero");
+			return -1;
+		}
 
-    return numero;
-  }
+		return numero;
+	}
 }
