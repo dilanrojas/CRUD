@@ -13,6 +13,8 @@ import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 
 import modelo.Usuario;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
 
 /**
  * @author Dilan Rojas
@@ -28,6 +30,7 @@ public class ActualizarVista extends JFrame {
 	private JButton btnBuscar;
 	private JList<Usuario> listaUsuarios;
 	private DefaultListModel<Usuario> modeloUsuarios;
+	private JButton btnVolver;
 
 	// Main (Pruebas)
 	public static void main(String[] args) {
@@ -67,6 +70,11 @@ public class ActualizarVista extends JFrame {
         listaUsuarios.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listaUsuarios.setBounds(111, 125, 506, 206);
         getContentPane().add(listaUsuarios);
+        
+        btnVolver = new JButton("Volver");
+        btnVolver.setBorder(new LineBorder(new Color(153, 204, 255), 2, true));
+        btnVolver.setBounds(12, 328, 85, 27);
+        getContentPane().add(btnVolver);
 	}
 	
 	// Setters & Getters
@@ -85,14 +93,10 @@ public class ActualizarVista extends JFrame {
 		}
 	}
 	
-	// Obtener la lista de usuarios de la búsqueda
-	public JList<Usuario> getListaUsuarios() {
-	    return listaUsuarios;
-	}
-	
 	// Configurar escuchadores
 	public void setEscuchadores(ActionListener escuchador) {
 		btnBuscar.addActionListener(escuchador);
+		btnVolver.addActionListener(escuchador);
 		
 	}
 	
@@ -100,6 +104,14 @@ public class ActualizarVista extends JFrame {
 		listaUsuarios.addMouseListener(escuchador);
 	}
 	
+	// Obtener la lista de usuarios de la búsqueda
+	public JList<Usuario> getListaUsuarios() {
+		return listaUsuarios;
+	}
+	
+	public JButton getBtnVolver() {
+		return btnVolver;
+	}
 	// Método mostrar mensaje
 	public void mostrarMsj(String msg) {
 	    JOptionPane.showMessageDialog(this, msg, "CRUD", JOptionPane.INFORMATION_MESSAGE);
