@@ -11,8 +11,8 @@ import vista.grafico.ActualizarUsuarioVista;
 import vista.grafico.ActualizarVista;
 
 /**
- * @author Ana Gonzalez
- * @date Nov 9, 2025
+ * @author Dilan Rojas
+ * @date Nov 5, 2025
  * @version 1.0
  * @description description
  */
@@ -55,6 +55,9 @@ public class ActualizarControlador implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 	    Object source = e.getSource();
+	    if(source == vista.getBtnVolver()) {
+	    	vista.cerrar();
+	    }
 
 	    try {
 	        if (source == vista.getBtnBuscar()) {
