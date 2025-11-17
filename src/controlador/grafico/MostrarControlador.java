@@ -33,45 +33,50 @@ public class MostrarControlador implements ActionListener {
 		this.vista = vista;
 		this.vistaUsuario = vistaUsuario;
 		
-        // Registrar escuchadores
-        vista.setEscuchadores(this);
-        vista.setEscuchadorLista(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 2) { // Doble clic
-                    Usuario seleccionado = vista.getListaUsuarios().getSelectedValue();
-                    if (seleccionado != null) {
-                        mostrarUsuario(seleccionado);
-                    }
+    // Registrar escuchadores
+    vista.setEscuchadores(this);
+    vista.setEscuchadorLista(new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            if (e.getClickCount() == 2) { // Doble clic
+                Usuario seleccionado = vista.getListaUsuarios().getSelectedValue();
+                if (seleccionado != null) {
+                    mostrarUsuario(seleccionado);
                 }
             }
-        });
+        }
+    });
 	}
 
     @Override
     public void actionPerformed(ActionEvent e) {
+      if (e.getSource() == vista.getBtnBuscar()) {
+
         try {
-            // Obtener texto de entrada
-            String entrada = vista.getTfBuscarInput().trim();
-            
-            // Comprobar entrada
-            if (entrada == "" || entrada.isBlank()) {
-            	vista.mostrarMsj("Ingrese un nombre de usuario, nivel o puntaje");
-            	return;
-            }
+          // Obtener texto de entrada
+          String entrada = vista.getTfBuscarInput().trim();
 
-            // Buscar coincidencias
-            Usuario[] coincidencias = modelo.buscar(entrada);
+          // Comprobar entrada
+          if (entrada == "" || entrada.isBlank()) {
+            vista.mostrarMsj("Ingrese un nombre de usuario, nivel o puntaje");
+            return;
+          }
 
-            if (coincidencias == null || coincidencias.length == 0) {
-                vista.mostrarMsj("No se encontraron usuarios.");
-            } else {
-                // Si encuentra coincidencias, añadirlas
-                vista.setListaUsuarios(coincidencias);
-            }
+          // Buscar coincidencias
+          Usuario[] coincidencias = modelo.buscar(entrada);
+
+          if (coincidencias == null || coincidencias.length == 0) {
+            vista.mostrarMsj("No se encontraron usuarios.");
+          } else {
+            // Si encuentra coincidencias, añadirlas
+            vista.setListaUsuarios(coincidencias);
+          }
         } catch (Exception ex) {
-            vista.mostrarMsj("Error al buscar usuarios: " + ex.getMessage());
+          vista.mostrarMsj("Error al buscar usuarios: " + ex.getMessage());
         }
+      } else if (e.getSource() == vista.getBtnVolver()) {
+        vista.cerrar();
+      }
     }
 	
     // Metodo para mostrar los datos en MostrarVistaUsuario

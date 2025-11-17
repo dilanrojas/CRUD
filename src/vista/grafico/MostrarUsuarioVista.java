@@ -1,12 +1,9 @@
 package vista.grafico;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.JButton;
 
 /**
  * @author Dilan Rojas
@@ -32,11 +29,11 @@ public class MostrarUsuarioVista extends JFrame {
 	public MostrarUsuarioVista() {
 		initComponents();
 		
-        setTitle("Usuario | CRUD");
-        setSize(310, 440);
-        setResizable(false);
-        setLocationRelativeTo(null);
-        setVisible(false);
+    setTitle("Usuario | CRUD");
+    setSize(310, 440);
+    setResizable(false);
+    setLocationRelativeTo(null);
+    setVisible(false);
 	}
 	
 	// Inicializar componentes
@@ -44,44 +41,44 @@ public class MostrarUsuarioVista extends JFrame {
 		getContentPane().setLayout(null);
 		
 		JLabel lblNombre = new JLabel("Nombre");
-        lblNombre.setBounds(36, 46, 75, 17);
-        getContentPane().add(lblNombre);
-        
-        tfNombre = new JTextField();
-        tfNombre.setEditable(false);
-        tfNombre.setBounds(36, 71, 186, 21);
-        getContentPane().add(tfNombre);
-        tfNombre.setColumns(10);
-        
-        tfNivel = new JTextField();
-        tfNivel.setEditable(false);
-        tfNivel.setColumns(10);
-        tfNivel.setBounds(36, 143, 186, 21);
-        getContentPane().add(tfNivel);
-        
-        JLabel lblN = new JLabel("Nivel");
-        lblN.setBounds(36, 118, 75, 17);
-        getContentPane().add(lblN);
-        
-        tfPuntaje = new JTextField();
-        tfPuntaje.setEditable(false);
-        tfPuntaje.setColumns(10);
-        tfPuntaje.setBounds(36, 227, 186, 21);
-        getContentPane().add(tfPuntaje);
-        
-        JLabel lblPuntaje = new JLabel("Puntaje");
-        lblPuntaje.setBounds(36, 202, 75, 17);
-        getContentPane().add(lblPuntaje);
-        
-        JLabel lblId = new JLabel("ID");
-        lblId.setBounds(36, 277, 75, 17);
-        getContentPane().add(lblId);
-        
-        tfID = new JTextField();
-        tfID.setEditable(false);
-        tfID.setColumns(10);
-        tfID.setBounds(36, 302, 186, 21);
-        getContentPane().add(tfID);
+    lblNombre.setBounds(36, 46, 75, 17);
+    getContentPane().add(lblNombre);
+    
+    tfNombre = new JTextField();
+    tfNombre.setEditable(false);
+    tfNombre.setBounds(36, 71, 186, 21);
+    getContentPane().add(tfNombre);
+    tfNombre.setColumns(10);
+    
+    tfNivel = new JTextField();
+    tfNivel.setEditable(false);
+    tfNivel.setColumns(10);
+    tfNivel.setBounds(36, 143, 186, 21);
+    getContentPane().add(tfNivel);
+    
+    JLabel lblN = new JLabel("Nivel");
+    lblN.setBounds(36, 118, 75, 17);
+    getContentPane().add(lblN);
+    
+    tfPuntaje = new JTextField();
+    tfPuntaje.setEditable(false);
+    tfPuntaje.setColumns(10);
+    tfPuntaje.setBounds(36, 227, 186, 21);
+    getContentPane().add(tfPuntaje);
+    
+    JLabel lblPuntaje = new JLabel("Puntaje");
+    lblPuntaje.setBounds(36, 202, 75, 17);
+    getContentPane().add(lblPuntaje);
+    
+    JLabel lblId = new JLabel("ID");
+    lblId.setBounds(36, 277, 75, 17);
+    getContentPane().add(lblId);
+    
+    tfID = new JTextField();
+    tfID.setEditable(false);
+    tfID.setColumns(10);
+    tfID.setBounds(36, 302, 186, 21);
+    getContentPane().add(tfID);
 	}
 
 	// Setters

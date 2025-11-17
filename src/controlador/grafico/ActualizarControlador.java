@@ -36,20 +36,20 @@ public class ActualizarControlador implements ActionListener {
 		this.vista = vista;
 		this.vistaUsuario = vistaUsuario;
 		
-        // Registrar escuchadores
-        vista.setEscuchadores(this);
-        vistaUsuario.setEscuchadores(this);
-        vista.setEscuchadorLista(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 2) { // Doble clic
-                    Usuario seleccionado = vista.getListaUsuarios().getSelectedValue();
-                    if (seleccionado != null) {
-                        mostrarUsuario(seleccionado);
-                    }
+    // Registrar escuchadores
+    vista.setEscuchadores(this);
+    vistaUsuario.setEscuchadores(this);
+    vista.setEscuchadorLista(new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            if (e.getClickCount() == 2) { // Doble clic
+                Usuario seleccionado = vista.getListaUsuarios().getSelectedValue();
+                if (seleccionado != null) {
+                    mostrarUsuario(seleccionado);
                 }
             }
-        });
+        }
+    });
 	}
 
 	@Override
@@ -124,12 +124,12 @@ public class ActualizarControlador implements ActionListener {
 	    }
 	}
 
-    // Metodo para mostrar los datos
-    private void mostrarUsuario(Usuario usuario) {
-        vistaUsuario.setTfNombre(usuario.getNombre());
-        vistaUsuario.setTfNivel(usuario.getNivel());
-        vistaUsuario.setTfPuntaje(usuario.getPuntaje());
-        vistaUsuario.setTfID(usuario.getID());
-        vistaUsuario.setVisible(true);
-    }
+  // Metodo para mostrar los datos
+  private void mostrarUsuario(Usuario usuario) {
+      vistaUsuario.setTfNombre(usuario.getNombre());
+      vistaUsuario.setTfNivel(usuario.getNivel());
+      vistaUsuario.setTfPuntaje(usuario.getPuntaje());
+      vistaUsuario.setTfID(usuario.getID());
+      vistaUsuario.setVisible(true);
+  }
 }
