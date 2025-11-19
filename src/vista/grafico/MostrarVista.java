@@ -1,20 +1,9 @@
 package vista.grafico;
 
-import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
-
-import javax.swing.JOptionPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.DefaultListModel;
-import javax.swing.JButton;
-import javax.swing.JList;
-import javax.swing.ListSelectionModel;
-
-import modelo.Usuario;
-import javax.swing.border.LineBorder;
-import java.awt.Color;
 
 /**
  * @author Dilan Rojas
@@ -26,11 +15,10 @@ import java.awt.Color;
 public class MostrarVista extends JFrame {
 	// Componentes gráficos
 	private static final long serialVersionUID = 1L;
-	private JTextField tfBuscarInput;
-	private JButton btnBuscar;
-	private JButton btnVolver;
-	private JList<Usuario> listaUsuarios;
-	private DefaultListModel<Usuario> modeloUsuarios;
+	private JTextField tfNombre;
+	private JTextField tfNivel;
+	private JTextField tfPuntaje;
+	private JTextField tfID;
 
 	// Main (Pruebas)
 	public static void main(String[] args) {
@@ -40,83 +28,86 @@ public class MostrarVista extends JFrame {
 	// Constructor
 	public MostrarVista() {
 		initComponents();
-        setTitle("Mostrar | CRUD");
-        setSize(750, 400);
-        setResizable(false);
-        setLocationRelativeTo(null);
-        setVisible(true);
+		
+    setTitle("Usuario | CRUD");
+    setSize(310, 440);
+    setResizable(false);
+    setLocationRelativeTo(null);
+    setVisible(false);
 	}
-
+	
 	// Inicializar componentes
 	public void initComponents() {
 		getContentPane().setLayout(null);
 		
-        tfBuscarInput = new JTextField();
-        tfBuscarInput.setToolTipText("");
-        tfBuscarInput.setBounds(111, 52, 409, 38);
-        getContentPane().add(tfBuscarInput);
-        tfBuscarInput.setColumns(10);
-        
-        JLabel lblNewLabel = new JLabel("Nombre | Nivel | Puntaje");
-        lblNewLabel.setBounds(285, 23, 154, 17);
-        getContentPane().add(lblNewLabel);
-        
-        btnBuscar = new JButton("Buscar");
-        btnBuscar.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-        btnBuscar.setBounds(532, 52, 85, 37);
-        getContentPane().add(btnBuscar);
-        
-        modeloUsuarios = new DefaultListModel<Usuario>();
-        listaUsuarios = new JList<Usuario>(modeloUsuarios);
-        listaUsuarios.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        listaUsuarios.setBounds(111, 125, 506, 206);
-        getContentPane().add(listaUsuarios);
-        
-        btnVolver = new JButton("Volver");
-        btnVolver.setBorder(new LineBorder(new Color(153, 204, 255), 2, true));
-        btnVolver.setBounds(12, 328, 85, 27);
-        getContentPane().add(btnVolver);
-	}
-	
-	// Setters & Getters
-	public String getTfBuscarInput() {
-		return tfBuscarInput.getText();
-	}
-	
-	public JButton getBtnBuscar() {
-		return btnBuscar;
-	}
-	
-	public JButton getBtnVolver() {
-		return btnVolver;
+		JLabel lblNombre = new JLabel("Nombre");
+    lblNombre.setBounds(36, 46, 75, 17);
+    getContentPane().add(lblNombre);
+    
+    tfNombre = new JTextField();
+    tfNombre.setEditable(false);
+    tfNombre.setBounds(36, 71, 186, 21);
+    getContentPane().add(tfNombre);
+    tfNombre.setColumns(10);
+    
+    tfNivel = new JTextField();
+    tfNivel.setEditable(false);
+    tfNivel.setColumns(10);
+    tfNivel.setBounds(36, 143, 186, 21);
+    getContentPane().add(tfNivel);
+    
+    JLabel lblN = new JLabel("Nivel");
+    lblN.setBounds(36, 118, 75, 17);
+    getContentPane().add(lblN);
+    
+    tfPuntaje = new JTextField();
+    tfPuntaje.setEditable(false);
+    tfPuntaje.setColumns(10);
+    tfPuntaje.setBounds(36, 227, 186, 21);
+    getContentPane().add(tfPuntaje);
+    
+    JLabel lblPuntaje = new JLabel("Puntaje");
+    lblPuntaje.setBounds(36, 202, 75, 17);
+    getContentPane().add(lblPuntaje);
+    
+    JLabel lblId = new JLabel("ID");
+    lblId.setBounds(36, 277, 75, 17);
+    getContentPane().add(lblId);
+    
+    tfID = new JTextField();
+    tfID.setEditable(false);
+    tfID.setColumns(10);
+    tfID.setBounds(36, 302, 186, 21);
+    getContentPane().add(tfID);
 	}
 
-	public void setListaUsuarios(Usuario[] lista) {
-		modeloUsuarios.clear();
-		for (Usuario usuario : lista) {
-			modeloUsuarios.addElement(usuario);
-		}
+	// Setters
+	public void setTfNombre(String nombre) {
+		this.tfNombre.setText(nombre);;
+	}
+
+	public void setTfNivel(int nivel) {
+		this.tfNivel.setText("" + nivel);;
+	}
+
+
+	public void setTfPuntaje(int puntaje) {
+		this.tfPuntaje.setText("" + puntaje);;
 	}
 	
-	// Obtener la lista de usuarios de la búsqueda
-	public JList<Usuario> getListaUsuarios() {
-	    return listaUsuarios;
+	public void setTfID(int id) {
+		this.tfID.setText("" + id);;
 	}
 	
-	// Configurar escuchadores
-	public void setEscuchadores(ActionListener escuchador) {
-		btnBuscar.addActionListener(escuchador);
-		btnVolver.addActionListener(escuchador);
+	@Override
+	public void setVisible(boolean value) {
+	    super.setVisible(value);
 	}
-	
-	public void setEscuchadorLista(MouseListener escuchador) {
-		listaUsuarios.addMouseListener(escuchador);
-	}
-	
+
 	// Método mostrar mensaje
 	public void mostrarMsj(String msg) {
-	    JOptionPane.showMessageDialog(this, msg, "CRUD", JOptionPane.INFORMATION_MESSAGE);
-	}
+		JOptionPane.showMessageDialog(this, msg, "CRUD", JOptionPane.INFORMATION_MESSAGE);
+    }
 	
 	// Método cerrar
 	public void cerrar() {

@@ -14,27 +14,30 @@ package modelo;
 public class Usuario {
 	// Atributos
 	private String nombre;
-  private String nickname;
+	private String nickname;
 	private String contrasena;
 	private int nivel;
 	private int puntaje;
 	private int ID;
+	private Configuraciones configuraciones;
 
 	// Constructor
 	public Usuario(
 		String nombre,
-    String nickname,
+		String nickname,
 		String contrasena,
 		int nivel,
 		int puntaje,
-		int id
+		int id,
+		Configuraciones configuraciones
 	) {
 		this.nombre = nombre;
-    this.nickname = nickname;
+		this.nickname = nickname;
 		this.contrasena = contrasena;
 		this.nivel = nivel;
 		this.puntaje = puntaje;
 		this.ID = id;
+		this.configuraciones = configuraciones;
 	}
 
 	// Getters & Setters
@@ -42,9 +45,9 @@ public class Usuario {
 		return nombre;
 	}
 
-  public String getNickname() {
-    return nickname;
-  }
+	public String getNickname() {
+		return nickname;
+	}
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
@@ -81,7 +84,14 @@ public class Usuario {
 	public void setID(int ID) {
 		this.ID = ID;
 	}
+	
+	public Configuraciones getConfiguraciones() {
+		return configuraciones;
+	}
 
+	public void setConfiguraciones(Configuraciones configuraciones) {
+		this.configuraciones = configuraciones;
+	}
 
 	@Override
 	public String toString() {

@@ -23,16 +23,18 @@ import javax.swing.border.LineBorder;
 
 public class InsertarVista extends JFrame {
 	private static final long serialVersionUID = 1L;
-  private JTextField tfNombre;
+	private JTextField tfNombre;
 	private JTextField tfNickname;
 	private JTextField tfContrasena;
+	private JTextField tfConfirmarContrasena;
 	private JTextField tfNivel;
-  private JLabel lblNombre;
+	private JLabel lblNombre;
 	private JLabel lblNickname;
 	private JLabel lblContrasena;
 	private JLabel lblGameLevel;
 	private JButton btnCrear;
 	private JButton btnCancelar;
+	private JLabel lblConfirmarContrasea;
 	
 	public static void main(String[] args) {
 		InsertarVista vista = new InsertarVista();
@@ -42,7 +44,7 @@ public class InsertarVista extends JFrame {
 		initComponents();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Insertar | CRUD");
-		setSize(400, 470);
+		setSize(400, 540);
 		setResizable(true);
 		setLocationRelativeTo(null);
 		setVisible(true);
@@ -87,14 +89,14 @@ public class InsertarVista extends JFrame {
     tfContrasena.setColumns(10);
 
     lblGameLevel = new JLabel("Nivel de juego");
-    lblGameLevel.setBounds(110, 240, 110, 20);
+    lblGameLevel.setBounds(109, 323, 110, 20);
     lblGameLevel.setHorizontalAlignment(SwingConstants.LEFT);
     getContentPane().add(lblGameLevel);
 
     tfNivel = new JTextField();
     tfNivel.setBackground(new Color(255, 255, 255));
     tfNivel.setFont(new Font("Dialog", Font.PLAIN, 12));
-    tfNivel.setBounds(110, 270, 180, 30);
+    tfNivel.setBounds(109, 353, 180, 30);
     tfNivel.setHorizontalAlignment(SwingConstants.CENTER);
     getContentPane().add(tfNivel);
     tfNivel.setColumns(10);
@@ -103,14 +105,26 @@ public class InsertarVista extends JFrame {
     btnCrear.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
     btnCrear.setFont(new Font("Dialog", Font.BOLD, 12));
     btnCrear.setBackground(Color.LIGHT_GRAY);
-    btnCrear.setBounds(110, 320, 180, 30);
+    btnCrear.setBounds(109, 403, 180, 30);
     getContentPane().add(btnCrear);
-    
+
     btnCancelar = new JButton("Cancelar");
     btnCancelar.setBackground(Color.LIGHT_GRAY);
     btnCancelar.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
-    btnCancelar.setBounds(110, 362, 180, 30);
+    btnCancelar.setBounds(109, 445, 180, 30);
     getContentPane().add(btnCancelar);
+
+    tfConfirmarContrasena = new JTextField();
+    tfConfirmarContrasena.setHorizontalAlignment(SwingConstants.LEFT);
+    tfConfirmarContrasena.setColumns(10);
+    tfConfirmarContrasena.setBackground(Color.WHITE);
+    tfConfirmarContrasena.setBounds(109, 279, 180, 30);
+    getContentPane().add(tfConfirmarContrasena);
+
+    lblConfirmarContrasea = new JLabel("Confirmar contraseña");
+    lblConfirmarContrasea.setHorizontalAlignment(SwingConstants.LEFT);
+    lblConfirmarContrasea.setBounds(109, 249, 181, 20);
+    getContentPane().add(lblConfirmarContrasea);
   }
 
   public String getNombre() {
@@ -125,12 +139,20 @@ public class InsertarVista extends JFrame {
 		return tfContrasena.getText();
 	}
 
+  public String getConfirmarContrasena() {
+    return tfConfirmarContrasena.getText();
+  }
+
 	public int getNivel() {
 		return Integer.parseInt(tfNivel.getText());
 	}
 	
 	public JButton getBtnCancelar() {
 		return btnCancelar;
+	}
+	
+	public JButton getBtnCrear() {
+		return btnCrear;
 	}
 
 	public void cerrar() {

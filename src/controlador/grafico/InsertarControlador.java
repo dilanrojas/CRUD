@@ -3,6 +3,7 @@ package controlador.grafico;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import modelo.Configuraciones;
 import modelo.Usuario;
 import modelo.dao.IUsuarioDAO;
 import vista.grafico.InsertarVista;
@@ -17,38 +18,43 @@ import vista.grafico.InsertarVista;
 public class InsertarControlador implements ActionListener {
 	private IUsuarioDAO modelo;
 	private InsertarVista vista;
-	
-	public InsertarControlador(IUsuarioDAO modelo, InsertarVista vista) {
+
+	public InsertarControlador(
+		IUsuarioDAO modelo,
+		InsertarVista vista
+	) {
 		this.modelo = modelo;
 		this.vista = vista;
-		
+
 		vista.setEscuchadores(this);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == vista.getBtnCancelar()) {
-			vista.cerrar();
-			return;
-		}
-		// Comprobar datos
-		if (!comprobarDatos()) return;
+		Object source = e.getSource();
 
-		// Verificar que nivel sea un número
-		int nivel = comprobarNivel();
-		if (nivel == -1) return;
+		if (source == vista.getBtnCancelar()) vista.cerrar();
 
-		Usuario usuario = null;
-		try {
-			usuario = new Usuario(vista.getNombre(), vista.getNickname(), vista.getContrasena(), nivel, 0, 0);
-			modelo.agregar(usuario);
-			vista.mostrarMsj("Usuario agregado corractamente");
-			vista.cerrar();
-			return;
-		} catch (Exception ex) {
-			vista.mostrarMsj("No es posible agregar el usuario");
-			vista.cerrar();
-			return;
+		if (source == vista.getBtnCrear()) {
+			// Comprobar datos
+			if (!comprobarDatos()) return;
+
+			// Verificar que nivel sea un número
+			int nivel = comprobarNivel();
+			if (nivel == -1) return;
+
+			Usuario usuario = null;
+			try {
+				usuario = new Usuario(vista.getNombre(), vista.getNickname(), vista.getContrasena(), nivel, 0, 0, new Configuraciones());
+				modelo.agregar(usuario);
+				vista.mostrarMsj("Usuario agregado corractamente");
+				vista.cerrar();
+				return;
+			} catch (Exception ex) {
+				vista.mostrarMsj("No es posible agregar el usuario");
+				vista.cerrar();
+				return;
+			}
 		}
 	}
 
@@ -66,17 +72,32 @@ public class InsertarControlador implements ActionListener {
 		} else if (vista.getNickname().contains(" ")) {
 			vista.mostrarMsj("El nickname no debe contener espacios");
 			return false;
+		} else if (modelo.buscar(vista.getNickname()) != null) {
+			vista.mostrarMsj("El nickname ya se encuentra registrado");
+			return false;
 		}
 
 		// Comprobar contraseña
-		if (vista.getContrasena().equals("") || vista.getContrasena().isBlank()) {
+		String contrasena = vista.getContrasena();
+		String confirmarContrasena = vista.getConfirmarContrasena();
+
+		// Comprobar contraseña válida
+		if (!contrasena.equals(confirmarContrasena)) {
+			vista.mostrarMsj("Las contraseñas no coinciden");
+			return false;
+			
+		} else if (contrasena == "" || contrasena.isBlank()) {
 			vista.mostrarMsj("Ingrese una contraseña válida");
 			return false;
-		} else if (vista.getContrasena().length() < 4) {
+			
+		}else if (contrasena.length() < 4) {
 			vista.mostrarMsj("La contraseña debe tener un mínimo de 4 caractéres");
 			return false;
+			
+		} else if (contrasena.contains(" ")) {
+			vista.mostrarMsj("La contraseña no debe tener espacios");
+			return false;
 		}
-
 		return true;
 	}
 

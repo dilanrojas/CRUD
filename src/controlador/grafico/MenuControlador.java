@@ -4,14 +4,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import modelo.dao.IUsuarioDAO;
-import vista.grafico.ActualizarUsuarioVista;
 import vista.grafico.ActualizarVista;
+import vista.grafico.ActualizarVista;
+import vista.grafico.BuscarVista;
 import vista.grafico.ConfiguracionesVista;
-import vista.grafico.EliminarUsuarioVista;
+import vista.grafico.EliminarVista;
 import vista.grafico.EliminarVista;
 import vista.grafico.InsertarVista;
 import vista.grafico.MenuVista;
-import vista.grafico.MostrarUsuarioVista;
+import vista.grafico.MostrarVista;
 import vista.grafico.MostrarVista;
 
 /**
@@ -24,23 +25,30 @@ import vista.grafico.MostrarVista;
 public class MenuControlador implements ActionListener {
 	private IUsuarioDAO modelo;
 
+	private BuscarVista buscarVista;
+	private BuscarControlador buscarControlador;
+	
 	private MenuVista menuVista;
-	private ActualizarVista menuActualizar;
-	private ActualizarUsuarioVista menuActualizarUsuario;
-	private ConfiguracionesVista configuracionesVista;
-	private EliminarVista eliminarVista;
-	private EliminarUsuarioVista eliminarUsuarioVista;
+	
 	private InsertarVista insertarVista;
-	private MostrarVista mostrarVista;
-	private MostrarUsuarioVista mostrarUsuarioVista;
-
-	private ActualizarControlador actualizarControlador;
-	private ConfiguracionesControlador configuracionesControlador;
-	private EliminarControlador eliminarControlador;
 	private InsertarControlador insertarControlador;
+	
+	private ActualizarVista actualizarVista;
+	private ActualizarControlador actualizarControlador;
+	
+	private EliminarVista eliminarVista;
+	private EliminarControlador eliminarControlador;
+	
+	private ConfiguracionesVista configuracionesVista;
+	private ConfiguracionesControlador configuracionesControlador;
+	
+	private MostrarVista mostrarVista;
 	private MostrarControlador mostrarControlador;
 
-	public MenuControlador(IUsuarioDAO modelo, MenuVista menuVista) {
+	public MenuControlador(
+		IUsuarioDAO modelo,
+		MenuVista menuVista
+	) {
 		this.modelo = modelo;
         this.menuVista = menuVista;
 
@@ -50,33 +58,54 @@ public class MenuControlador implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Object fuente = e.getSource();
-
-        if (fuente == menuVista.getBtnMostrar()) {
-            mostrarVista = new MostrarVista();
-            mostrarUsuarioVista = new MostrarUsuarioVista();
-            mostrarControlador = new MostrarControlador(modelo, mostrarVista, mostrarUsuarioVista);
-
-        } else if (fuente == menuVista.getBtnInsertar()) {
-            insertarVista = new InsertarVista();
-            insertarControlador = new InsertarControlador(modelo, insertarVista);
-
-        } else if (fuente == menuVista.getBtnActualizar()) {
-            menuActualizar = new ActualizarVista();
-            menuActualizarUsuario = new ActualizarUsuarioVista();
-            actualizarControlador = new ActualizarControlador(modelo, menuActualizar, menuActualizarUsuario);
-
-        } else if (fuente == menuVista.getBtnEliminar()) {
-            eliminarVista = new EliminarVista();
-            eliminarUsuarioVista = new EliminarUsuarioVista();
-            eliminarControlador = new EliminarControlador(modelo, eliminarVista, eliminarUsuarioVista);
-
-        /* PENDIENTE --> } else if (fuente == menuVista.getjM_Config()) {
-            configuracionesVista = new ConfiguracionesVista();
-            configuracionesControlador = new ConfiguracionesControlador(configuracionesVista, modelo);*/
-        } else if (fuente == menuVista.getBtnSalir()) {
-            menuVista.cerrar();
+        Object source = e.getSource();
+        
+        if (source == menuVista.getBtnInsertar()) {
+        	insertar();
+        } else if (source == menuVista.getBtnMostrar()) {
+        	mostrar();
+        } else if (source == menuVista.getBtnEliminar()) {
+        	eliminar();
+        } else if (source == menuVista.getBtnActualizar()) {
+        	actualizar();
+        } else if (source == menuVista.getBtnConfiguraciones()) {
+        	configuraciones();
+        } else if (source == menuVista.getBtnSalir()) {
+        	menuVista.cerrar();
         }
     }
+    
+    public void buscar(IMostrarDatos controlador) {
+    	buscarVista = new BuscarVista();
+    	buscarControlador = new BuscarControlador(buscarVista, modelo, controlador);
+    }
+    
+    public void insertar() {
+    	insertarVista = new InsertarVista();
+    	insertarControlador = new InsertarControlador(modelo, insertarVista);
+    }
+    
+    public void mostrar() {
+    	mostrarVista = new MostrarVista();
+    	mostrarControlador = new MostrarControlador(mostrarVista);
+    	buscar(mostrarControlador);
+    }
+    
+    public void actualizar() {
+    	actualizarVista = new ActualizarVista();
+    	actualizarControlador = new ActualizarControlador(modelo, actualizarVista);
+    	buscar(actualizarControlador);
+    }
 
+    public void eliminar() {
+    	eliminarVista = new EliminarVista();
+    	eliminarControlador = new EliminarControlador(modelo, eliminarVista);
+    	buscar(eliminarControlador);
+    }
+    
+    public void configuraciones() {
+    	configuracionesVista = new ConfiguracionesVista();
+    	configuracionesControlador = new ConfiguracionesControlador(modelo, configuracionesVista);
+    	buscar(configuracionesControlador);
+    }
 }

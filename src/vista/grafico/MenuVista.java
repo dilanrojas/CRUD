@@ -58,7 +58,6 @@ public class MenuVista extends JFrame {
 		getContentPane().add(btnEliminar);
 		
 		btnConfiguraciones = new JButton("Configuraciones del juego");
-		btnConfiguraciones.setEnabled(false);
 		btnConfiguraciones.setBounds(77, 209, 322, 27);
 		getContentPane().add(btnConfiguraciones);
 		
