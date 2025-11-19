@@ -42,7 +42,7 @@ public class InsertarVista extends JFrame {
 
 	public InsertarVista() {
 		initComponents();
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(dipose());
 		setTitle("Insertar | CRUD");
 		setSize(400, 540);
 		setResizable(true);
