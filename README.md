@@ -13,10 +13,10 @@
 ## Juego
 - Bienvenida
 - Opción de inscribirse (Controlador de Insertar en CRUD)
-- Listar los 5 mejores records (nickname y puntaje maximo)
+- Listar los 5 mejores records (nickname y puntaje maximo) (Dilan)
 - Solicitar datos al ingresar al juego (nickname y contraseña)
 - Crear enemigos (al menos 3 con diferente aspecto y movilidad)
-- Buscar los assets
+- Buscar los assets (Dilan)
 - Cargar e implementar configuraciones en el juego (usuariosData)
 - Configurar las dificultades (facil, medio, dificil)
 - Configurar armas (automática y ráfagas)
