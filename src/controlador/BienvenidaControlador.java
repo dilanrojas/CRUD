@@ -47,8 +47,6 @@ public class BienvenidaControlador implements ActionListener{
     }
 
     private void abrirInscripcion() {
-        vista.cerrar();
-
         InsertarVista insertar = new InsertarVista();
         InsertarControlador controlador = new InsertarControlador(modelo, insertar);
     }
