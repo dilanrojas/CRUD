@@ -16,18 +16,20 @@ import motor.util.Vector2D;
  * @description description
  */
 
-public class Enemigo extends SpriteMovible{
+public class Enemigo extends SpriteMovible {
 	private Vector2D direccionActual;
+	private Nave target;
 
-	public Enemigo(BufferedImage textura, Vector2D posicion) {
+	public Enemigo(BufferedImage textura, Vector2D posicion, Nave target) {
 		super(textura, posicion);
+		this.target = target;
 		
 		direccionActual = Vector2D.ZERO;
 	}
 	
 	@Override
 	public void actualizar() {
-		perseguir(InputMouse.getPosicion());
+		perseguir(target.getPosicion());
 		super.actualizar();
 	}
 
@@ -39,7 +41,7 @@ public class Enemigo extends SpriteMovible{
 	
 	public void perseguir(Vector2D posicionJugador) {
 		getPhysics().setAceleracion(1.5);
-		getMovement().setVelocidad(300);
+		getMovement().setVelocidad(100);
 		
 		Vector2D objetivo = posicionJugador.subtract(transform.getPosicion()).normalize();
 

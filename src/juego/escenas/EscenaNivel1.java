@@ -1,19 +1,24 @@
 package juego.escenas;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.util.Random;
+
 import javax.swing.JOptionPane;
 
+import juego.Assets;
+import juego.Config;
+import juego.entidades.AdministradorDeColisiones;
+import juego.entidades.Controles;
 import juego.entidades.Enemigo;
 import juego.entidades.Nave;
 import motor.Scene;
+import motor.component.Renderer;
 import motor.entidades.ListaEntidades;
 import motor.input.Key;
 import motor.util.Vector2D;
-import juego.entidades.Bala;
-import juego.entidades.Controles;
-import juego.Assets;
-import juego.entidades.AdministradorDeColisiones;
 
 /**
  * @author AnaGonzalezC5F593
@@ -22,175 +27,130 @@ import juego.entidades.AdministradorDeColisiones;
  * @description TODO
  */
 
+/**
+ * @author Estudiantes
+ * @date 10 nov 2025
+ * @version 1.0
+ * @description Breve descripción de la clase
+ */
+
 public class EscenaNivel1 extends Scene {
-
+	private double tiempoEntreOrdas = 1.0;
+	
 	private Nave jugador;
-	private ListaEntidades enemigos;
-	private ListaEntidades balasJugador;
-	private AdministradorDeColisiones colisiones;
-
+	private ListaEntidades balas;
+	
 	private int enemigosMuertos = 0;
-	private final int ENEMIGOS_PARA_GANAR = 3;
-
-	private double cronometroSpawn = 0;
-	private boolean nivelActivo = true;
-	private Random rnd = new Random();
-
+	private final int ENEMIGOS_PARA_GANAR = 5;
+	
+	private Enemigo enemigo;
+	private ListaEntidades listaEnemigos;
+	private AdministradorDeColisiones administrador;
+	private double contador;
+	
 	public EscenaNivel1() {
-
-		enemigos = new ListaEntidades();
-		balasJugador = new ListaEntidades();
-		colisiones = new AdministradorDeColisiones();
-
-		Controles controles1 = new Controles(Key.UP, Key.LEFT, Key.RIGHT, Key.M);
-		jugador = new Nave(Assets.textura_nave_1, new Vector2D(400, 300), controles1);
-
-		generarEnemigoInstantaneo();
+		this.listaEnemigos = new ListaEntidades();
+		
+		this.contador = 0;
+		this.administrador = new AdministradorDeColisiones();
+		
+		Controles controles = new Controles(Key.W, Key.A, Key.D, Key.SPACE);
+		
+		this.jugador = new Nave(Assets.textura_nave_1, new Vector2D(200,200), controles);
+		this.balas =  new ListaEntidades();
+		
+		BufferedImage textura = Renderer.crearTextura(new Rectangle(20, 20), new Color(150, 50, 50));
+		Vector2D posicion = new Vector2D(200, 200);
+		this.enemigo  = new Enemigo(textura, posicion, jugador);
 	}
-
+	
 	@Override
 	public void actualizar() {
-		if (!nivelActivo)
-			return;
-
 		if (jugador != null) {
 			jugador.actualizar();
 		}
-
-		enemigos.actualizar();
-		balasJugador.actualizar();
-		for (int i = 0; i < enemigos.getSize(); i++) {
-		    Enemigo e = (Enemigo) enemigos.get(i);
-		    e.perseguir(jugador.getTransform().getPosicion());
+		
+		balas.actualizar();
+		
+		disparar();
+		listaEnemigos.actualizar();
+		
+		contador += motor.GameLoop.deltaTimeSeconds;
+		if (contador > tiempoEntreOrdas) {
+			oleadaDeEnemigos();
+			listaEnemigos.actualizar();
+			this.contador = 0;
+			if (tiempoEntreOrdas == 0) tiempoEntreOrdas = 10.0;
 		}
-
-		if (jugador != null && jugador.quiereDisparar()) {
-			Object balaObj = jugador.disparar();
-			if (balaObj instanceof Bala) {
-				balasJugador.add((Bala) balaObj);
-			} 
+		
+		if (administrador.detectarColisionesConNave(listaEnemigos, jugador)) {
+			JOptionPane.showMessageDialog(null, "Perdiste");
+			destruir();
 		}
-
-		sincronizarMovimientoEnemigosHaciaJugador();
-
-		// - balas del jugador vs enemigos
-		///colisiones.detectarColisionesEntreEntidades(balasJugador, enemigos);
-
-		colisiones.detectarColisionesConNave(enemigos, jugador);
-
-		// eliminar entidades muertas y comprobar condiciones
+		
+		if (administrador.detectarColisionesConBalas(listaEnemigos, balas) == 1) {
+			enemigosMuertos += 1;
+			
+			if (enemigosMuertos == ENEMIGOS_PARA_GANAR) {
+				JOptionPane.showMessageDialog(null, "Ganaste");
+				destruir();
+			}
+		}
+		
 		destruir();
-
-		//  si no hay enemigo vivo, generar otro inmediatamente
-		if (enemigos.getSize() == 0) {
-			generarEnemigoInstantaneo();
-		}
-
 	}
 
 	@Override
 	public void dibujar(Graphics g) {
-
-		enemigos.dibujar(g);
-
-		balasJugador.dibujar(g);
-
-		if (jugador != null) {
-			jugador.dibujar(g);
-		}
+		balas.dibujar(g);
+		
+		if (listaEnemigos != null) listaEnemigos.dibujar(g);
+		
+		if (jugador != null) jugador.dibujar(g);
 	}
-
+	
 	@Override
-	public void destruir() {
-
-		enemigos.destruir();
-		balasJugador.destruir();
-
-		// Game Over
-		if (jugador == null || !jugador.estaViva()) {
-			nivelActivo = false;
-			mostrarGameOver();
-		}
-
-		// Gana
-		if (enemigosMuertos >= ENEMIGOS_PARA_GANAR) {
-			nivelActivo = false;
-			mostrarGanaste();
-		}
-	}
-
-	private void generarEnemigoInstantaneo() {
-
-		int x, y;
-		int pantallaW = 800;
-		int pantallaH = 600;
-
-		int borde = rnd.nextInt(4);
-		switch (borde) {
-		case 0 -> { // arriba
-			x = rnd.nextInt(pantallaW);
-			y = 0;
-		}
-		case 1 -> { // abajo
-			x = rnd.nextInt(pantallaW);
-			y = pantallaH;
-		}
-		case 2 -> { // izquierda
-			x = 0;
-			y = rnd.nextInt(pantallaH);
-		}
-		default -> { // derecha
-			x = pantallaW;
-			y = rnd.nextInt(pantallaH);
-		}
-		}
-
-		// Crear enemigo
-		Enemigo enemigo = new Enemigo(Assets.textura_nave_2, new Vector2D(x, y));
-
-		if (enemigo.getMovement() != null) {
-			enemigo.getMovement().setVelocidad(100);
-		}
-
-		enemigos.add(enemigo);
-	}
-
-	private void sincronizarMovimientoEnemigosHaciaJugador() {
-		if (jugador == null || enemigos == null)
-			return;
-		int size = enemigos.getSize();
-		for (int i = 0; i < size; i++) {
-			Object obj = enemigos.get(i);
-			if (obj instanceof Enemigo enemigo) {
-				if (jugador != null) {
-
-					Vector2D posEn = enemigo.getTransform().getPosicion();
-					Vector2D posJ = jugador.getTransform().getPosicion();
-					Vector2D dir = posJ.subtract(posEn).normalize();
-					
-					double angulo = Math.toDegrees(Math.atan2(dir.getY(), dir.getX()));
-					if (enemigo.getMovement() != null) {
-						enemigo.getMovement().setDireccion((int) angulo);
-
-					}
-				}
+	public void destruir() {		
+		if (jugador != null) {
+			if (!jugador.estaViva()) {
+				jugador = null;
 			}
 		}
+		
+		balas.destruir();
+		
+		listaEnemigos.destruir();
 	}
+	
+	public void oleadaDeEnemigos() {
+		Random random = new Random();
+		int cantidadEnemigosNuevos = 5;
+		BufferedImage textura;
+		Vector2D posicion;
+		
+		Vector2D[] bordersPantalla = {
+			    new Vector2D(0, 0),                           // Esquina superior izquierda
+			    new Vector2D(Config.WIDTH, 0),                // Esquina sup. derecha
+			    new Vector2D(0, Config.HEIGHT),               // Esquina inf. izquierda
+			    new Vector2D(Config.WIDTH, Config.HEIGHT),    // Esquina inf. derecha
 
-	public void manejarEnemigoMuerto() {
-		enemigosMuertos++;
+			    new Vector2D(Config.WIDTH / 2, 0),            // Centro arriba
+			    new Vector2D(Config.WIDTH / 2, Config.HEIGHT),// Centro abajo
+			    new Vector2D(0, Config.HEIGHT / 2),           // Centro izquierda
+			    new Vector2D(Config.WIDTH, Config.HEIGHT / 2) // Centro derecha
+			};
+
+		
+		for (int i = 0; i < cantidadEnemigosNuevos; i++) {
+			textura = Renderer.crearTextura(new Rectangle(20, 20), new Color(random.nextInt(255), random.nextInt(255), random.nextInt(255)));
+			Vector2D spawn = bordersPantalla[random.nextInt(bordersPantalla.length)];
+			listaEnemigos.add(new Enemigo(textura, spawn, jugador));
+		}
 	}
-
-	private void mostrarGameOver() {
-		JOptionPane.showMessageDialog(null, "Game Over", "Nivel 1", JOptionPane.INFORMATION_MESSAGE);
-
-		// volver al menú del juego o cerrar/terminar la escena
-	}
-
-	private void mostrarGanaste() {
-		JOptionPane.showMessageDialog(null, "¡Ganaste Nivel 1!", "Nivel 1", JOptionPane.INFORMATION_MESSAGE);
-
-		// TODO: notificar al controlador que el nivel terminó correctamente
+	
+	private void disparar() {
+		if (jugador != null && jugador.quiereDisparar()) {
+			balas.add(jugador.disparar());
+        }
 	}
 }

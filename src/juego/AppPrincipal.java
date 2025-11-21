@@ -1,6 +1,6 @@
 package juego;
 
-import juego.escenas.EscenaBatalla;
+import juego.escenas.EscenaNivel1;
 import motor.GameLoop;
 
 /**
@@ -15,7 +15,7 @@ public class AppPrincipal {
         // Paso 1: Cargar los recursos del juego: imágenes, sonidos, fuentes
         if (Assets.cargados()) {
             // Paso 2: Crear el juego
-            Game game = new Game(new EscenaBatalla());
+            Game game = new Game(new EscenaNivel1());
             // Paso 3: Iniciar el bucle principal del juego
             GameLoop gameLoop = new GameLoop(game);
         }

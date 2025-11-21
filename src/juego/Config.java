@@ -35,7 +35,7 @@ public class Config {
      * la resolución base del juego.
      * </p>
      */
-    public static final int WIDTH = 1280;
+    public static final int WIDTH = 1366;
 
     /**
      * Alto predeterminado de la ventana o área de juego (en píxeles).
@@ -44,7 +44,7 @@ public class Config {
      * proporción de aspecto del juego.
      * </p>
      */
-    public static final int HEIGHT = 800;
+    public static final int HEIGHT = 768;
     
     public static final String TITLE = "PRUEBAS PARA MEJORAR EL MOTOR V7";
 }

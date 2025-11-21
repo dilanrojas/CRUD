@@ -28,9 +28,34 @@ public class AdministradorDeColisiones {
 		}
 	}
 	
-	public void detectarColisionesConNave(ListaEntidades entidades, IColisionable entidad) {
+	public int detectarColisionesConBalas(ListaEntidades entidades1, ListaEntidades entidades2) {
+	    if (entidades1 == null || entidades2 == null) return -1;
+
+	    for (int i = 0; i < entidades1.getSize(); i++) {
+	        IColisionable bala = (IColisionable) entidades1.get(i);
+	        if (bala == null) continue;
+
+	        for (int j = 0; j < entidades2.getSize(); j++) {
+	            IColisionable enemigo = (IColisionable) entidades2.get(j);
+	            if (enemigo == null) continue;
+
+	            if (enemigo.getCollider().colisionaCon(bala)) {
+	                enemigo.alColisionarCon(bala);
+	                
+	                bala.alColisionarCon(enemigo);
+	                System.out.println("mataste uno");
+	                return 1;
+	            }
+	        }
+	    }
+	    
+	    return -1;
+	}
+
+	
+	public boolean detectarColisionesConNave(ListaEntidades entidades, IColisionable entidad) {
 		if (entidades == null || entidades.getSize() == 0 || entidad == null) {
-			return;
+			return false;
 		}
 
 		for (int i = 0; i < entidades.getSize(); i++) {
@@ -39,10 +64,12 @@ public class AdministradorDeColisiones {
 				if (elemento.getCollider().colisionaCon(entidad)) {
 					elemento.alColisionarCon(entidad);
 					entidad.alColisionarCon(elemento);
+					return true;
 				}
 			}
 		}
 
+		return false;
 	}
 	
 	
