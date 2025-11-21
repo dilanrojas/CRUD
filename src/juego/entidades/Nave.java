@@ -36,8 +36,8 @@ public class Nave extends SpriteMovible {
 	public Nave(BufferedImage textura, Vector2D posicion, Controles controles) {
 		super(textura, posicion);
 
-		fireDerecho = new Sprite(Assets.textura_fire_1, posicion);
-		fireIzquierdo = new Sprite(Assets.textura_fire_1, posicion);
+		fireDerecho = new Sprite(Assets.textura_fire, posicion);
+		fireIzquierdo = new Sprite(Assets.textura_fire, posicion);
 
 		direccionActual = -OFFSET_ANGULAR;
 		setOffset_angular(OFFSET_ANGULAR);
@@ -50,10 +50,10 @@ public class Nave extends SpriteMovible {
 
 		this.controles = controles;
 
-		fireDerecho = new Sprite(Assets.textura_fire_1,Vector2D.ZERO);
+		fireDerecho = new Sprite(Assets.textura_fire,Vector2D.ZERO);
 		fireDerecho.setOffset_angular(OFFSET_ANGULAR);
 		
-		fireIzquierdo = new Sprite(Assets.textura_fire_1,Vector2D.ZERO);
+		fireIzquierdo = new Sprite(Assets.textura_fire,Vector2D.ZERO);
 		fireIzquierdo.setOffset_angular(OFFSET_ANGULAR);
 		
 		isAcelerando = false;

@@ -23,7 +23,7 @@ public class Bala extends SpriteMovible {
     private double tiempoDeVida; // CRONOMETRO
 
     public Bala(Vector2D posicionInicial, double velocidadInicial, int anguloDireccion) {
-        super(Assets.textura_bala_1, posicionInicial);
+        super(Assets.textura_bala, posicionInicial);
 
         tiempoDeVida = 0;
         		

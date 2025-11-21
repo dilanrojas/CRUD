@@ -72,13 +72,9 @@ public class Assets {
 	// ============================================================
 
 	// AQUI SE CREAN LAS CONSTANTES PARA LAS IMAGENES DEL JUEGO
-	public static BufferedImage textura_bala_1;
-	public static BufferedImage textura_nave_1;
-	public static BufferedImage textura_fire_1;
-	
-	public static BufferedImage textura_bala_2;
-	public static BufferedImage textura_nave_2;
-	public static BufferedImage textura_fire_2;
+	public static BufferedImage textura_bala;
+	public static BufferedImage textura_nave;
+	public static BufferedImage textura_fire;
 
 
 	// AQUI SE CREAN LAS CONSTANTES PARA LAS FUENTES DEL JUEGO
@@ -111,13 +107,9 @@ public class Assets {
 	public static boolean cargados() {
 
 		// AQUI SE REALIZA LA CARGA DE LAS IMAGENES DEL JUEGO
-		textura_nave_1 = Loader.cargarImagen("/asteroide/ship_blue.png");
-		textura_bala_1 = Loader.cargarImagen("/asteroide/laser_blue.png");
-		textura_fire_1 = Loader.cargarImagen("/asteroide/fire_blue.png");
-
-		textura_nave_2 = Loader.cargarImagen("/asteroide/ship_red.png");
-		textura_bala_2 = Loader.cargarImagen("/asteroide/laser_red.png");
-		textura_fire_2 = Loader.cargarImagen("/asteroide/fire_red.png");
+		textura_nave = Loader.cargarImagen("/asteroide/ship_blue.png");
+		textura_bala = Loader.cargarImagen("/asteroide/laser_blue.png");
+		textura_fire = Loader.cargarImagen("/asteroide/fire_blue.png");
 
 		// AQUI SE REALIZA LA CARGA DE LAS FUENTES DEL JUEGO
 

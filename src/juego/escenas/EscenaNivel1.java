@@ -57,7 +57,7 @@ public class EscenaNivel1 extends Scene {
 		
 		Controles controles = new Controles(Key.W, Key.A, Key.D, Key.SPACE);
 		
-		this.jugador = new Nave(Assets.textura_nave_1, new Vector2D(200,200), controles);
+		this.jugador = new Nave(Assets.textura_nave, new Vector2D(200,200), controles);
 		this.balas =  new ListaEntidades();
 		
 		BufferedImage textura = Renderer.crearTextura(new Rectangle(20, 20), new Color(150, 50, 50));
