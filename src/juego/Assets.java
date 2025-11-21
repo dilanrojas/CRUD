@@ -11,6 +11,7 @@ import java.awt.Font;
 import java.awt.image.BufferedImage;
 
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 
 import motor.util.Loader;
 
@@ -81,6 +82,10 @@ public class Assets {
 	public static BufferedImage textura_enemigoDificil;
 
 	public static BufferedImage textura_fondo;
+	
+	public static Clip musicaFondo;
+	public static Clip efectoDisparar;
+	public static Clip efectoExplosion;
 
 	// AQUI SE CREAN LAS CONSTANTES PARA LAS FUENTES DEL JUEGO
 
@@ -120,12 +125,52 @@ public class Assets {
 		textura_enemigoMedio = Loader.cargarImagen("/enemigos/mine_red.png");
 		textura_enemigoDificil = Loader.cargarImagen("/enemigos/Bomber.png");
 		
+		musicaFondo = Loader.cargarSonido("/musica/bgm.wav");
+		efectoDisparar = Loader.cargarSonido("/sonidos/shoot2.wav");
+		efectoExplosion = Loader.cargarSonido("/sonidos/explosion.wav");
+		
 		textura_fondo = Loader.cargarImagen("/fondos/bg_1.png");
-				
+		
 		// AQUI SE REALIZA LA CARGA DE LAS FUENTES DEL JUEGO
 
 		// AQUI SE REALIZA LA CARGA DE LOS SONIDOS DEL JUEGO
 
 		return true;
 	}
+	
+	public static void reproducirMusicaFondo() {
+	    if (musicaFondo == null) return;
+
+	    musicaFondo.stop();
+	    musicaFondo.setFramePosition(0);
+
+	    // Control de volumen
+	    FloatControl controlVolumen =
+	    (FloatControl) musicaFondo.getControl(FloatControl.Type.MASTER_GAIN);
+	    controlVolumen.setValue(-12.0f); // ajusta a tu gusto
+
+	    musicaFondo.loop(Clip.LOOP_CONTINUOUSLY);
+	    musicaFondo.start();
+	}
+
+
+	public static void detenerMusicaFondo() {
+		if (musicaFondo == null) return;
+	    musicaFondo.stop();
+	}
+	
+	public static void reproducirDisparo() {
+		if (efectoDisparar == null) return;
+		efectoDisparar.stop();
+		efectoDisparar.setFramePosition(0);
+		efectoDisparar.start();
+	}
+	
+	public static void reproducirExplosion() {
+		if (efectoExplosion == null) return;
+		efectoExplosion.stop();
+		efectoExplosion.setFramePosition(0);
+		efectoExplosion.start();
+	}
+
 }

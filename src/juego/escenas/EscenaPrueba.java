@@ -42,7 +42,7 @@ public class EscenaPrueba extends Scene {
 	}
 
 	@Override
-	public void dibujar(Graphics arg0) {
+	public void dibujar(Graphics g) {
 		// TODO Auto-generated method stub
 		
 	}

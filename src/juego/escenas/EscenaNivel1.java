@@ -23,13 +23,6 @@ import motor.util.Vector2D;
  * @description TODO
  */
 
-/**
- * @author Estudiantes
- * @date 10 nov 2025
- * @version 1.0
- * @description Breve descripción de la clase
- */
-
 public class EscenaNivel1 extends Scene {
 	private double tiempoEntreOrdas = 1.0;
 	
@@ -83,14 +76,7 @@ public class EscenaNivel1 extends Scene {
 			destruir();
 		}
 		
-		if (administrador.detectarColisionesConBalas(listaEnemigos, balas) == 1) {
-			enemigosMuertos += 1;
-			
-			if (enemigosMuertos == ENEMIGOS_PARA_GANAR) {
-				JOptionPane.showMessageDialog(null, "Ganaste");
-				destruir();
-			}
-		}
+		controlarEnemigos();
 		
 		destruir();
 	}
@@ -143,6 +129,19 @@ public class EscenaNivel1 extends Scene {
 	private void disparar() {
 		if (jugador != null && jugador.quiereDisparar()) {
 			balas.add(jugador.disparar());
+			Assets.reproducirDisparo();
         }
+	}
+	
+	private void controlarEnemigos() {
+		if (listaEnemigos != null && administrador.detectarColisionesConBalas(listaEnemigos, balas) == 1) {
+			enemigosMuertos += 1;
+			Assets.reproducirExplosion();
+			
+			if (enemigosMuertos == ENEMIGOS_PARA_GANAR) {
+				JOptionPane.showMessageDialog(null, "Ganaste");
+				destruir();
+			}
+		}
 	}
 }

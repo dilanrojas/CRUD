@@ -14,6 +14,9 @@ public class AppPrincipal {
     public void iniciar() {
         // Paso 1: Cargar los recursos del juego: imágenes, sonidos, fuentes
         if (Assets.cargados()) {
+            // Iniciar música
+            Assets.reproducirMusicaFondo();
+            
             // Paso 2: Crear el juego
             Game game = new Game(new EscenaNivel1());
             // Paso 3: Iniciar el bucle principal del juego
