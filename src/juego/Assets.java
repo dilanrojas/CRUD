@@ -75,7 +75,12 @@ public class Assets {
 	public static BufferedImage textura_bala;
 	public static BufferedImage textura_nave;
 	public static BufferedImage textura_fire;
+	
+	public static BufferedImage textura_enemigoFacil;
+	public static BufferedImage textura_enemigoMedio;
+	public static BufferedImage textura_enemigoDificil;
 
+	public static BufferedImage textura_fondo;
 
 	// AQUI SE CREAN LAS CONSTANTES PARA LAS FUENTES DEL JUEGO
 
@@ -110,7 +115,13 @@ public class Assets {
 		textura_nave = Loader.cargarImagen("/asteroide/ship_blue.png");
 		textura_bala = Loader.cargarImagen("/asteroide/laser_blue.png");
 		textura_fire = Loader.cargarImagen("/asteroide/fire_blue.png");
-
+		
+		textura_enemigoFacil = Loader.cargarImagen("/enemigos/mine.png");
+		textura_enemigoMedio = Loader.cargarImagen("/enemigos/mine_red.png");
+		textura_enemigoDificil = Loader.cargarImagen("/enemigos/Bomber.png");
+		
+		textura_fondo = Loader.cargarImagen("/fondos/bg_1.png");
+				
 		// AQUI SE REALIZA LA CARGA DE LAS FUENTES DEL JUEGO
 
 		// AQUI SE REALIZA LA CARGA DE LOS SONIDOS DEL JUEGO

@@ -2,6 +2,7 @@ package juego.entidades;
 
 import java.awt.image.BufferedImage;
 
+import juego.Assets;
 import motor.util.Vector2D;
 
 /**
@@ -12,9 +13,9 @@ import motor.util.Vector2D;
  */
 
 public class EnemigoFacil extends EnemigoBase {
-
-	public EnemigoFacil(BufferedImage textura, Vector2D posicion, Nave target) {
-		super(textura, posicion, target);
+	public EnemigoFacil(Vector2D posicion, Nave target) {
+		super(Assets.textura_enemigoFacil, posicion, target);
+		
 	}
 
 	@Override
