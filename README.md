@@ -11,7 +11,8 @@
 - Mejorar UI/Layout
 
 ## Juego
-- Listar los 5 mejores records (nickname y puntaje maximo) **(Dilan)**
+- ~~Pantala de bienvenida~~ **(Ana)**
+- ~~Listar los 5 mejores records (nickname y puntaje maximo)~~ **(Dilan)**
 - Solicitar datos al ingresar al juego (nickname y contraseña) (Sebas)
 - Crear enemigos (al menos 3 con diferente aspecto y movilidad) **(Ana)**
 - Buscar los assets **(Dilan)**
