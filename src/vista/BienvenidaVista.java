@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.JTextArea;
 
 /**
  * @author AnaGonzalezC5F593
@@ -23,17 +24,16 @@ public class BienvenidaVista extends JFrame {
 	private JButton btnInscribir;
 	private JButton btnJugar;
 	private JButton btnSalir;
-	private JList<String> listaRecords;
-	private DefaultListModel<String> modeloRecords;
+	private JTextArea jtaRecords;
 
 	public BienvenidaVista() {
 	        initComponents();
 	        setTitle("Bienvenida");
 	        setSize(500, 500);
-	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        setResizable(false);
 	        setLocationRelativeTo(null);
 	        getContentPane().setLayout(null);
+
 	        setVisible(true);
 	    }
 
@@ -69,21 +69,15 @@ public class BienvenidaVista extends JFrame {
 		lblRecords.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblRecords.setBounds(171, 240, 150, 31);
 		getContentPane().add(lblRecords);
-
-		modeloRecords = new DefaultListModel<String>();
-
-		listaRecords = new JList<String>(modeloRecords);
-		listaRecords.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		listaRecords.setEnabled(false);
-		listaRecords.setBounds(118, 275, 250, 157);
-		getContentPane().add(listaRecords);
+		
+        jtaRecords = new JTextArea();
+        jtaRecords.setEditable(false);
+        jtaRecords.setBounds(84, 283, 320, 166);
+        getContentPane().add(jtaRecords);
 	}
 
-	public void setListaRecords(String[] lista) {
-		modeloRecords.clear();
-		for (String record : lista) {
-			modeloRecords.addElement(record);
-		}
+	public void setListaRecords(String lista) {
+		jtaRecords.setText(lista);
 	}
 
 	public JButton getBtnInscribir() {
@@ -96,10 +90,6 @@ public class BienvenidaVista extends JFrame {
 
 	public JButton getBtnSalir() {
 		return btnSalir;
-	}
-
-	public JList<String> getListaRecords() {
-		return listaRecords;
 	}
 
 	public void setEscuchadores(ActionListener escuchador) {

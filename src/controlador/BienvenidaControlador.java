@@ -60,6 +60,6 @@ public class BienvenidaControlador implements ActionListener{
     }
 
     private void cargarRecords() {
-        
+        vista.setListaRecords(modelo.getRecords(5));
     }
 }

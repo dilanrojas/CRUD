@@ -80,4 +80,9 @@ public class UsuarioDAO implements IUsuarioDAO {
 		return dataset.getElemento(id);
 	}
 
+	@Override
+	public String getRecords(int cantidadRecords) {
+		return dataset.records(cantidadRecords);
+	}
+
 }

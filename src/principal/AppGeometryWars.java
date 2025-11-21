@@ -1,6 +1,5 @@
 package principal;
 
-import CRUD.modelo.dao.IUsuarioDAO;
 import CRUD.modelo.dao.archivoJSON.UsuarioDAO;
 import CRUD.modelo.dataset.ListaUsuarios;
 import controlador.BienvenidaControlador;

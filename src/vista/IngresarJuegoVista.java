@@ -21,7 +21,6 @@ public class IngresarJuegoVista extends JFrame {
 		initComponents();
         setTitle("Ingresar al juego");
         setSize(500, 500);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
         getContentPane().setLayout(null);

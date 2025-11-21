@@ -115,10 +115,50 @@ public class ListaUsuarios {
 	  lista[index] = null;
 	  return true;
   }
+  
+  // Intercambiar
+  public void intercambiar(int i, int j) {
+	  Usuario listaI = lista[i];
+	  lista[i] = lista[j];
+	  lista[j] = listaI;
+  }
+  
+  // Ordenamiento
+  public Usuario[] ordenamiento(Usuario[] listaPorOrdenar, int sizeLista) {
+	  Usuario[] listaOrdenada = listaPorOrdenar;
+	  
+	  for (int i = 0; i < sizeLista - 1; i++) {
+		  for (int j = 0; j < sizeLista - 1; j++) {
+			  if (listaOrdenada[j].getPuntaje() < listaOrdenada[j + 1].getPuntaje()) {
+				  intercambiar(j, j + 1);
+			  }
+		  }
+	  }
+	  
+	  return listaOrdenada;
+  }
+  
+  // Records
+  public String records(int cantidadRecords) {
+	  Usuario[] listaCopiaOrdenada = ordenamiento(lista, size);
+	  Usuario[] records = new Usuario[cantidadRecords];
+	  String listaRecords = "Usuario   -   Puntaje\n" +
+			  				"----------------------------\n";
+	  
+	  for (int i = 0; i < cantidadRecords; i++) {
+		  records[i] = listaCopiaOrdenada[i];
+	  }
+	  
+	  for (Usuario usuario : records) {
+		  listaRecords += usuario.toString() + "  -  " + usuario.getPuntaje() + "\n";
+	  }
+	  
+	  return listaRecords;
+  }
 
   // === BÚSQUEDAS ===
 
-  // Buscar por nombre, ID y nivel
+  // Buscar por nombre, nickname, ID y nivel
   public Usuario[] buscar(String entrada) {
 	  Usuario[] coincidencias = new Usuario[10];
 	  int cantidadCoincidencias = 0;
@@ -140,7 +180,9 @@ public class ListaUsuarios {
 		  String entradaNormalizada = entrada.toLowerCase();
 
 		  for (Usuario usuario: lista) {
-			  if (usuario != null && usuario.getNombre().toLowerCase().contains(entradaNormalizada)) {
+			  if (usuario != null && usuario.getNombre().toLowerCase().contains(entradaNormalizada) ||
+				  usuario.getNickname().toLowerCase().contains(entradaNormalizada) 
+			  ) {
 				  if (coincidencias.length >= cantidadCoincidencias) coincidencias = crecer(coincidencias);
 				  coincidencias[cantidadCoincidencias++] = usuario;
 			  }

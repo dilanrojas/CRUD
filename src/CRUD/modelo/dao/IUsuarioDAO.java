@@ -28,6 +28,9 @@ public interface IUsuarioDAO {
   
   // Obtener un elemento por id
   public abstract Usuario getElemento(int id);
+  
+  // Obtener records
+  public abstract String getRecords(int cantidadRecords);
 
   // Busca un usuario en la lista
   // por nivel, id o nombre, devolviendo un array
