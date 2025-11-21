@@ -50,19 +50,19 @@ public class BienvenidaVista extends JFrame {
 
 		lblNombres = new JLabel("Dilan Rojas - Ana González - Sebastián Castro");
 		lblNombres.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNombres.setBounds(99, 65, 293, 29);
+		lblNombres.setBounds(96, 65, 293, 29);
 		getContentPane().add(lblNombres);
 
 		btnInscribir = new JButton("Inscribirse");
-		btnInscribir.setBounds(182, 105, 120, 30);
+		btnInscribir.setBounds(157, 106, 177, 30);
 		getContentPane().add(btnInscribir);
 
 		btnJugar = new JButton("Ingresar al juego");
-		btnJugar.setBounds(182, 150, 120, 30);
+		btnJugar.setBounds(157, 151, 177, 30);
 		getContentPane().add(btnJugar);
 
 		btnSalir = new JButton("Salir");
-		btnSalir.setBounds(182, 195, 120, 30);
+		btnSalir.setBounds(157, 196, 177, 30);
 		getContentPane().add(btnSalir);
 
 		lblRecords = new JLabel("Los mejores récords");
@@ -75,7 +75,7 @@ public class BienvenidaVista extends JFrame {
 		listaRecords = new JList<String>(modeloRecords);
 		listaRecords.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listaRecords.setEnabled(false);
-		listaRecords.setBounds(118, 275, 250, 120);
+		listaRecords.setBounds(118, 275, 250, 157);
 		getContentPane().add(listaRecords);
 	}
 
