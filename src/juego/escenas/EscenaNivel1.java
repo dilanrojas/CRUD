@@ -12,7 +12,7 @@ import juego.Assets;
 import juego.Config;
 import juego.entidades.AdministradorDeColisiones;
 import juego.entidades.Controles;
-import juego.entidades.Enemigo;
+import juego.entidades.EnemigoFacil;
 import juego.entidades.Nave;
 import motor.Scene;
 import motor.component.Renderer;
@@ -61,7 +61,7 @@ public class EscenaNivel1 extends Scene {
 		
 		BufferedImage textura = Renderer.crearTextura(new Rectangle(20, 20), new Color(150, 50, 50));
 		Vector2D posicion = new Vector2D(200, 200);
-		this.enemigo  = new Enemigo(textura, posicion, jugador);
+		this.enemigo  = new EnemigoFacil(textura, posicion, jugador);
 	}
 	
 	@Override
