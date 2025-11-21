@@ -12,6 +12,7 @@ import juego.Assets;
 import juego.Config;
 import juego.entidades.AdministradorDeColisiones;
 import juego.entidades.Controles;
+import juego.entidades.Enemigo;
 import juego.entidades.EnemigoFacil;
 import juego.entidades.Nave;
 import motor.Scene;
@@ -43,7 +44,7 @@ public class EscenaNivel1 extends Scene {
 	private int enemigosMuertos = 0;
 	private final int ENEMIGOS_PARA_GANAR = 5;
 	
-	private Enemigo enemigo;
+	private EnemigoFacil enemigo;
 	private ListaEntidades listaEnemigos;
 	private AdministradorDeColisiones administrador;
 	private double contador;
@@ -61,7 +62,7 @@ public class EscenaNivel1 extends Scene {
 		
 		BufferedImage textura = Renderer.crearTextura(new Rectangle(20, 20), new Color(150, 50, 50));
 		Vector2D posicion = new Vector2D(200, 200);
-		this.enemigo  = new EnemigoFacil(textura, posicion, jugador);
+		this.enemigo = new EnemigoFacil(textura, posicion, jugador);
 	}
 	
 	@Override
@@ -80,7 +81,7 @@ public class EscenaNivel1 extends Scene {
 			oleadaDeEnemigos();
 			listaEnemigos.actualizar();
 			this.contador = 0;
-			if (tiempoEntreOrdas == 0) tiempoEntreOrdas = 10.0;
+			if (tiempoEntreOrdas == tiempoEntreOrdas) tiempoEntreOrdas = 10.0;
 		}
 		
 		if (administrador.detectarColisionesConNave(listaEnemigos, jugador)) {
@@ -126,7 +127,6 @@ public class EscenaNivel1 extends Scene {
 		Random random = new Random();
 		int cantidadEnemigosNuevos = 5;
 		BufferedImage textura;
-		Vector2D posicion;
 		
 		Vector2D[] bordersPantalla = {
 			    new Vector2D(0, 0),                           // Esquina superior izquierda
