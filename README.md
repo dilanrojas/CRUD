@@ -21,4 +21,4 @@
 - Configurar armas (automática y ráfagas) (Sebas)
 - Configurar vidas extra (3, 5, 7 y 10)
 - Crear un nivel como base **(Ana)**
-- Crear los demás niveles
+- Crear los demás niveles **(Ana)**
