@@ -14,7 +14,7 @@
 - ~~Pantala de bienvenida~~ **(Ana)**
 - ~~Listar los 5 mejores records (nickname y puntaje maximo)~~ **(Dilan)**
 - Solicitar datos al ingresar al juego (nickname y contraseña) (Sebas)
-- Crear enemigos (al menos 3 con diferente aspecto y movilidad) **(Ana)**
+- Crear enemigos (al menos 3 con diferente aspecto y movilidad) **(Ana)** LISTO
 - Buscar los assets **(Dilan)**
 - Cargar e implementar configuraciones en el juego (usuariosData) **(Dilan)**
 - Configurar las dificultades (facil, medio, dificil) **(Dilan)**
