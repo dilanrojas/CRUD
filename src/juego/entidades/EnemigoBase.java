@@ -29,7 +29,6 @@ public abstract class EnemigoBase extends SpriteMovible {
 	@Override
 	public void actualizar() {
 		mover();
-		atacar();
 		super.actualizar();
 
 	}
@@ -85,5 +84,10 @@ public abstract class EnemigoBase extends SpriteMovible {
 
 	public abstract void mover();
 
+}
+
+	public abstract void mover();
+
 	public abstract void atacar();
 }
+
