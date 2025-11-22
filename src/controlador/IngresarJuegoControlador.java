@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import CRUD.modelo.Usuario;
 import CRUD.modelo.dao.IUsuarioDAO;
+import juego.AppJuego;
 import vista.BienvenidaVista;
 import vista.IngresarJuegoVista;
 
@@ -44,7 +45,8 @@ public class IngresarJuegoControlador implements ActionListener {
 				return;
 			}
 			
-			vista.mostrarMsj("Ingresando!");
+			AppJuego juego = new AppJuego();
+			vista.cerrar();
 		} else if (source == vista.getBtnCancelar()) {
 			volver();
 		}

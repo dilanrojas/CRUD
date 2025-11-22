@@ -104,27 +104,22 @@ public class EscenaNivel1 extends Scene {
 	}
 	
 	public void oleadaDeEnemigos() {
-		Random random = new Random();
-		int cantidadEnemigosNuevos = 5;
-		
-		Vector2D[] bordersPantalla = {
-			    new Vector2D(0, 0),                           // Esquina superior izquierda
-			    new Vector2D(Config.WIDTH, 0),                // Esquina sup. derecha
-			    new Vector2D(0, Config.HEIGHT),               // Esquina inf. izquierda
-			    new Vector2D(Config.WIDTH, Config.HEIGHT),    // Esquina inf. derecha
+	    int cantidadEnemigosNuevos = 8;
+	    double distanciaMin = 500;
+	    double distanciaMax = 500;
 
-			    new Vector2D(Config.WIDTH / 2, 0),            // Centro arriba
-			    new Vector2D(Config.WIDTH / 2, Config.HEIGHT),// Centro abajo
-			    new Vector2D(0, Config.HEIGHT / 2),           // Centro izquierda
-			    new Vector2D(Config.WIDTH, Config.HEIGHT / 2) // Centro derecha
-			};
+	    for (int i = 0; i < cantidadEnemigosNuevos; i++) {
 
-		
-		for (int i = 0; i < cantidadEnemigosNuevos; i++) {
-			Vector2D spawn = bordersPantalla[random.nextInt(bordersPantalla.length)];
-			listaEnemigos.add(new EnemigoFacil(spawn, jugador));
-		}
+	        Vector2D spawn = generarSpawnAlejado(
+	                jugador.getTransform().getPosicion(), 
+	                distanciaMin, 
+	                distanciaMax
+	        );
+
+	        listaEnemigos.add(new EnemigoFacil(spawn, jugador));
+	    }
 	}
+
 	
 	private void disparar() {
 		if (jugador != null && jugador.quiereDisparar()) {
@@ -144,4 +139,21 @@ public class EscenaNivel1 extends Scene {
 			}
 		}
 	}
+	
+	private Vector2D generarSpawnAlejado(Vector2D centro, double distanciaMin, double distanciaMax) {
+	    Random random = new Random();
+
+	    // Elegimos un ángulo aleatorio 0°–360°
+	    double angulo = random.nextDouble() * Math.PI * 2;
+
+	    // Elegimos una distancia aleatoria entre min y max
+	    double distancia = distanciaMin + (random.nextDouble() * (distanciaMax - distanciaMin));
+
+	    // Convertimos polar → cartesiano
+	    double x = centro.getX() + Math.cos(angulo) * distancia;
+	    double y = centro.getY() + Math.sin(angulo) * distancia;
+
+	    return new Vector2D(x, y);
+	}
+
 }

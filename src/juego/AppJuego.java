@@ -10,7 +10,7 @@ import motor.GameLoop;
  * @description description
  */
 
-public class AppPrincipal {
+public class AppJuego {
     public void iniciar() {
         // Paso 1: Cargar los recursos del juego: imágenes, sonidos, fuentes
         if (Assets.cargados()) {
@@ -24,8 +24,7 @@ public class AppPrincipal {
         }
     }
 
-    public static void main(String[] args) {
-        AppPrincipal app = new AppPrincipal();
-        app.iniciar();
+    public AppJuego() {
+        iniciar();
     }
 }

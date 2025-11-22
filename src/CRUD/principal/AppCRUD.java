@@ -18,9 +18,8 @@ public class AppCRUD {
 	private MenuVista menuVista;
 	private ListaUsuarios dataset;
 
-	public static void main(String[] args) {
-		AppCRUD app = new AppCRUD();
-		app.iniciar();
+	public AppCRUD() {
+		iniciar();
 	}
 
 	// Iniciar controlador menu

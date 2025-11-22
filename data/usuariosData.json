@@ -1,5 +1,19 @@
 {
   "usuarios": [
+	{
+	  "configuraciones": {
+	    "vidas": 5,
+	    "arma": 2,
+	    "velocidad": 1,
+	    "dificultad": 2
+	  },
+	  "puntaje": 0,
+	  "nickname": "prueba",
+	  "contrasena": "prueba",
+	  "ID": 1,
+	  "nombre": "Prueba",
+	  "nivel": 0
+	},
     {
       "configuraciones": {
         "vidas": 5,
