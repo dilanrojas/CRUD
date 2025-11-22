@@ -41,14 +41,13 @@ public class AdministradorDeColisiones {
 
 	            if (enemigo.getCollider().colisionaCon(bala)) {
 	                enemigo.alColisionarCon(bala);
-	                
+
 	                bala.alColisionarCon(enemigo);
-	                System.out.println("mataste uno");
 	                return 1;
 	            }
 	        }
 	    }
-	    
+
 	    return -1;
 	}
 
@@ -72,6 +71,4 @@ public class AdministradorDeColisiones {
 		return false;
 	}
 	
-	
-
 }
