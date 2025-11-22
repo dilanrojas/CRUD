@@ -180,8 +180,8 @@ public class ListaUsuarios {
 		  String entradaNormalizada = entrada.toLowerCase();
 
 		  for (Usuario usuario: lista) {
-			  if (usuario != null && usuario.getNombre().toLowerCase().contains(entradaNormalizada) ||
-				  usuario.getNickname().toLowerCase().contains(entradaNormalizada) 
+			  if (usuario != null && (usuario.getNombre().toLowerCase().contains(entradaNormalizada) ||
+				  usuario.getNickname().toLowerCase().contains(entradaNormalizada)) 
 			  ) {
 				  if (coincidencias.length >= cantidadCoincidencias) coincidencias = crecer(coincidencias);
 				  coincidencias[cantidadCoincidencias++] = usuario;

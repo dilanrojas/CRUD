@@ -53,8 +53,8 @@ public class BienvenidaControlador implements ActionListener{
 
     private void ingresarJuego() {
         vista.cerrar();
-        new IngresarJuegoVista();
-        new MenuJuegoControlador();
+        IngresarJuegoVista ingresarJuegoVista = new IngresarJuegoVista();
+        IngresarJuegoControlador ingresarJuegoControlador = new IngresarJuegoControlador(modelo, ingresarJuegoVista);
     }
 
     private void cargarRecords() {
